@@ -1,5 +1,12 @@
 from nba_api.stats.static import players
-from nba_api.stats.endpoints import playercareerstats
+from nba_api.stats.endpoints import (
+    playercareerstats,
+    playerdashboardbygeneralsplits,
+    playerdashboardbyshootingsplits,
+    playerdashboardbyclutch,
+    playerdashboardbygamesplits,
+    playerdashboardbylastngames
+)
 import pandas as pd
 
 def get_player_career_stats(player_name):
@@ -19,7 +26,7 @@ def get_player_career_stats(player_name):
         "SEASON_ID", "TEAM_ID", "TEAM_ABBREVIATION", "PLAYER_AGE",
         "GP", "GS",  # Games Played, Games Started
         "MIN", "PTS", "REB", "AST", "STL", "BLK",  # Totals
-        "FGM", "FGA", "FG_PCT", "3PM", "3PA", "FG3_PCT", "FTM", "FTA", "FT_PCT",  # Shooting
+        "FGM", "FGA", "FG_PCT", "FG3M", "FG3A", "FG3_PCT", "FTM", "FTA", "FT_PCT",  # Shooting
         "OREB", "DREB",  # Rebounds (Offensive and Defensive)
         "PF",  # Personal Fouls
         "PLUS_MINUS", "PFD"  # Plus/Minus, Personal Fouls Drawn
@@ -38,14 +45,22 @@ def get_player_career_stats(player_name):
         career_df["BLK_PER_GAME"] = round(career_df["BLK"] / career_df["GP"], 2) if "BLK" in career_df else None
         career_df["MIN_PER_GAME"] = round(career_df["MIN"] / career_df["GP"], 2) if "MIN" in career_df else None
 
-    return career_df
+    # Shooting Splits
+    shooting_splits = playerdashboardbyshootingsplits.PlayerDashboardByShootingSplits(player_id=player_id)
+    shooting_splits_df = shooting_splits.get_data_frames()[3]
+    finishing_splits_df = shooting_splits.get_data_frames()[5]
+    
 
-
+    return career_df, shooting_splits_df, finishing_splits_df
 
 # Example usage
-player_name = input('Enter a players name: ')
-combined_stats_df = get_player_career_stats(player_name)
+player_name = input('Enter a player\'s name: ')
+overall_df, shooting_df, finishing_df = get_player_career_stats(player_name)
 
-if combined_stats_df is not None:
-    print(combined_stats_df.head())
-    print(len(combined_stats_df.columns))
+print('\n\n------------------------------------------------------------------------------\n\n')
+print(overall_df)
+print('\n\n------------------------------------------------------------------------------\n\n')
+print(shooting_df)
+print('\n\n------------------------------------------------------------------------------\n\n')
+print(finishing_df)
+print('\n\n------------------------------------------------------------------------------\n\n')
