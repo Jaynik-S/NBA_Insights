@@ -5,14 +5,8 @@ from nba_api.stats.endpoints import (
 )
 import pandas as pd
 
-def get_player_career_stats(player_name):
-    # Step 1: Get player ID
-    player_dict = players.find_players_by_full_name(player_name)
-    if not player_dict:
-        print(f"Player {player_name} not found.")
-        return None, None, None
-    player_id = player_dict[0]['id']
-    
+def get_player_career_stats(player_id):
+    # Step 1: Get player ID    
     # Step 2: Fetch career stats
     career_stats = playercareerstats.PlayerCareerStats(player_id=player_id)
     career_df = career_stats.get_data_frames()[0]
@@ -84,16 +78,5 @@ def get_player_career_stats(player_name):
 
     return career_df, shooting_splits_df, finishing_splits_df
 
-# Example usage
-player_name = ""
-while player_name != 'finish':
-    player_name = input('Enter a player\'s name: ')
-    overall_df, shooting_df, finishing_df = get_player_career_stats(player_name)
-
-    print('\n\n------------------------------------------------------------------------------\n\n')
-    print(overall_df)
-    print('\n\n------------------------------------------------------------------------------\n\n')
-    print(shooting_df)
-    print('\n\n------------------------------------------------------------------------------\n\n')
-    print(finishing_df)
-    print('\n\n------------------------------------------------------------------------------\n\n')
+if __name__ == "__main__":
+    print("This is career_stats.")
