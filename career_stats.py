@@ -75,8 +75,35 @@ def get_player_career_stats(player_id):
     finishing_splits_df = shooting_splits.get_data_frames()[5]
     finishing_splits_df = finishing_splits_df.iloc[0:, 1:]
     
+    
 
     return career_df, shooting_splits_df, finishing_splits_df
 
+def rename_and_combine_stats(career_df, shooting_splits_df, finishing_splits_df):
+    # Rename columns to avoid overlap
+    shooting_splits_df = shooting_splits_df.rename(columns=lambda x: f"ss_{x}")
+    finishing_splits_df = finishing_splits_df.rename(columns=lambda x: f"fs_{x}")
+
+    # Combine the DataFrames side by side
+    combined_df = pd.concat([career_df, shooting_splits_df, finishing_splits_df], axis=1)
+    return combined_df
+
+
+
+
+
+
 if __name__ == "__main__":
-    print("This is career_stats.")
+    overall_df, shooting_df, finishing_df = get_player_career_stats('203999')
+    print('\n\n------------------------------------------------------------------------------\n\n')
+    print(overall_df)
+    print('\n\n------------------------------------------------------------------------------\n\n')
+    print(shooting_df)
+    print('\n\n------------------------------------------------------------------------------\n\n')
+    print(finishing_df)
+    print('\n\n------------------------------------------------------------------------------\n\n')
+
+    
+    combined_df = rename_and_combine_stats(overall_df, shooting_df, finishing_df)
+    print(combined_df)
+
