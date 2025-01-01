@@ -79,16 +79,31 @@ def get_player_career_stats(player_id):
 
     return career_df, shooting_splits_df, finishing_splits_df
 
-def rename_and_combine_stats(career_df, shooting_splits_df, finishing_splits_df):
-    # Rename columns to avoid overlap
-    shooting_splits_df = shooting_splits_df.rename(columns=lambda x: f"ss_{x}")
-    finishing_splits_df = finishing_splits_df.rename(columns=lambda x: f"fs_{x}")
-
-    # Combine the DataFrames side by side
-    combined_df = pd.concat([career_df, shooting_splits_df, finishing_splits_df], axis=1)
-    return combined_df
-
-
+def merged_df(o_df, s_df, f_df):
+    # Extract relevant parts from the input DataFrames
+    season_df = o_df.iloc[-2:-1, 23:]
+    crop_shots_df = s_df.iloc[0:, 0:6]
+    crop_finish_df = f_df.iloc[0:, 0:6]
+    
+    # Combine shots and finish data
+    clustering_df = pd.concat([crop_shots_df, crop_finish_df]).reset_index(drop=True)
+    print(clustering_df.columns)                                                                            #TODO: COPY THE COLUMNS PASTE TODO WINTERBREAK THEN DELETE
+    
+    # Transform clustering_df into a single-row format
+    single_row = {}
+    for _, row in clustering_df.iterrows():
+        group_value = row['GROUP_VALUE'].replace(" ", "_").replace("(", "").replace(")", "")
+        for col in clustering_df.columns[1:]:  # Skip 'GROUP_VALUE'
+            single_row[f"{col}_{group_value}"] = row[col]
+    
+    # Include columns from season_df into single_row
+    for col in season_df.columns:
+        single_row[col] = season_df.iloc[0][col]
+    
+    # Convert the dictionary to a single-row DataFrame
+    single_row_df = pd.DataFrame([single_row])
+    
+    return single_row_df
 
 
 
@@ -96,7 +111,7 @@ def rename_and_combine_stats(career_df, shooting_splits_df, finishing_splits_df)
 if __name__ == "__main__":
     overall_df, shooting_df, finishing_df = get_player_career_stats('203999')
     print('\n\n------------------------------------------------------------------------------\n\n')
-    print(overall_df)
+    print(overall_df.colmuns)
     print('\n\n------------------------------------------------------------------------------\n\n')
     print(shooting_df)
     print('\n\n------------------------------------------------------------------------------\n\n')
@@ -104,6 +119,6 @@ if __name__ == "__main__":
     print('\n\n------------------------------------------------------------------------------\n\n')
 
     
-    combined_df = rename_and_combine_stats(overall_df, shooting_df, finishing_df)
+    combined_df = merged_df(overall_df, shooting_df, finishing_df)
     print(combined_df)
 
