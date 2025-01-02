@@ -9,9 +9,9 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 
 nba_players = [
-"LeBron James","Kevin Durant","Stephen Curry","Giannis Antetokounmpo","Nikola Jokić","Joel Embiid","Luka Dončić","James Harden","Damian Lillard","Jayson Tatum","Devin Booker","Kawhi Leonard"]#,"Paul George","Kyrie Irving","Jimmy Butler","Anthony Davis","Chris Paul","Trae Young","Donovan Mitchell","Bradley Beal","Zion Williamson","Ja Morant","Russell Westbrook","Karl-Anthony Towns","Draymond Green","Bam Adebayo","Rudy Gobert","Ben Simmons","Klay Thompson","Andrew Wiggins","Pascal Siakam","DeMar DeRozan","Zach LaVine","Brandon Ingram","Jaylen Brown","LaMelo Ball","Anthony Edwards","Domantas Sabonis","De'Aaron Fox","CJ McCollum","Khris Middleton","Jrue Holiday","Mikal Bridges","Jerami Grant","Steven Adams","Clint Capela","Myles Turner","Fred VanVleet","Kyle Lowry","Gordon Hayward","Kristaps Porziņģis","Julius Randle","Shai Gilgeous-Alexander","Darius Garland","Evan Mobley","Cade Cunningham","Tyrese Haliburton","Tyler Herro","RJ Barrett","Miles Bridges","Terry Rozier","Derrick Rose","Victor Oladipo","Malcolm Brogdon","Al Horford","Brook Lopez","Mitchell Robinson","Buddy Hield","Gary Trent Jr.","Michael Porter Jr.","Christian Wood","Spencer Dinwiddie","Caris LeVert","Montrezl Harrell","T.J. Warren","Eric Gordon","Derrick White","John Collins","Nikola Vučević","Aaron Gordon","Bojan Bogdanović","Marcus Smart","Lauri Markkanen","Robert Covington","Norman Powell","Serge Ibaka","Jarrett Allen","Seth Curry","Joe Ingles","Tim Hardaway Jr.","Reggie Jackson","Harrison Barnes","Mo Bamba","Jaren Jackson Jr.","Bogdan Bogdanović","Rui Hachimura","Kyle Kuzma","Jordan Clarkson","Richaun Holmes","D'Angelo Russell","Quentin Grimes","Dejounte Murray","Keldon Johnson","Lonzo Ball","Coby White","Alex Caruso","Jericho Sims","Devin Vassell","James Wiseman","Deandre Ayton","Franz Wagner","Jordan Poole","Kevin Porter Jr.","Patrick Beverley","Doug McDermott","Davis Bertans","Kelly Olynyk","Daniel Gafford","Cam Reddish","Trey Murphy III"]
+"LeBron James","Kevin Durant","Stephen Curry","Giannis Antetokounmpo","Nikola Jokić","Joel Embiid","Luka Dončić","James Harden","Damian Lillard","Jayson Tatum","Devin Booker","Kawhi Leonard","Paul George","Kyrie Irving","Jimmy Butler","Anthony Davis","Chris Paul","Trae Young","Donovan Mitchell","Bradley Beal","Zion Williamson","Ja Morant","Russell Westbrook","Karl-Anthony Towns","Draymond Green","Bam Adebayo","Rudy Gobert","Ben Simmons","Klay Thompson","Andrew Wiggins","Pascal Siakam","DeMar DeRozan","Zach LaVine","Brandon Ingram","Jaylen Brown","LaMelo Ball","Anthony Edwards","Domantas Sabonis","De'Aaron Fox","CJ McCollum","Khris Middleton","Jrue Holiday","Mikal Bridges","Jerami Grant","Steven Adams","Clint Capela","Myles Turner","Fred VanVleet","Kyle Lowry","Gordon Hayward","Kristaps Porziņģis","Julius Randle","Shai Gilgeous-Alexander","Darius Garland","Evan Mobley","Cade Cunningham","Tyrese Haliburton","Tyler Herro","RJ Barrett","Miles Bridges","Terry Rozier","Derrick Rose","Victor Oladipo","Malcolm Brogdon","Al Horford","Brook Lopez","Mitchell Robinson","Buddy Hield","Gary Trent Jr.","Michael Porter Jr.","Christian Wood","Spencer Dinwiddie","Caris LeVert","Montrezl Harrell","T.J. Warren","Eric Gordon","Derrick White","John Collins","Nikola Vučević","Aaron Gordon","Bojan Bogdanović","Marcus Smart","Lauri Markkanen","Robert Covington","Norman Powell","Serge Ibaka","Jarrett Allen","Seth Curry","Joe Ingles","Tim Hardaway Jr.","Reggie Jackson","Harrison Barnes","Mo Bamba","Jaren Jackson Jr.","Bogdan Bogdanović","Rui Hachimura","Kyle Kuzma","Jordan Clarkson","Richaun Holmes","D'Angelo Russell","Quentin Grimes","Dejounte Murray","Keldon Johnson","Lonzo Ball","Coby White","Alex Caruso","Jericho Sims","Devin Vassell","James Wiseman","Deandre Ayton","Franz Wagner","Jordan Poole","Kevin Porter Jr.","Patrick Beverley","Doug McDermott","Davis Bertans","Kelly Olynyk","Daniel Gafford","Cam Reddish","Trey Murphy III"]
 print(nba_players)
-
+cluster_num = 30
 
 players_id = []
 for player in nba_players:
@@ -27,26 +27,34 @@ for player in nba_players:
 
 
 players_data = []
+expected_feature_count = None  # Initialize expected_feature_count
 
 for p_id in players_id:
     one, two, three = cs.get_player_career_stats(p_id)
     full_stats = cs.merged_df(one, two, three)
     numeric_stats = full_stats.select_dtypes(include=[np.number])
-    
-    # Flatten the numeric stats into a single row
-    print('check')
-    
-    players_data.append(numeric_stats.values.flatten())
+    print('check', end= " ")
+    # Check the shape of numeric_stats and handle inconsistencies
+    if not numeric_stats.empty:
+        if expected_feature_count is None:  # Set the feature count based on the first valid player
+            expected_feature_count = numeric_stats.values.flatten().shape[0]
+        players_data.append(numeric_stats.values.flatten())
+    else:
+        # Append a zero array with the expected size if stats are missing
+        players_data.append(np.zeros(expected_feature_count))
 
-players_array = np.array(players_data)
+# Ensure all rows in players_array have the same length
+players_array = np.array(players_data, dtype=object)  # Use `object` temporarily
+players_array = np.array([row if len(row) == expected_feature_count else np.zeros(expected_feature_count) for row in players_array])
 players_array = np.nan_to_num(players_array)
 
 # Scale the data
 scaler = StandardScaler()
 scaled_data = scaler.fit_transform(players_array)
 
+
 # Apply KMeans
-kmeans = KMeans(n_clusters=5, random_state=42, n_init=20)
+kmeans = KMeans(n_clusters=cluster_num, random_state=42, n_init=20)
 kmeans.fit(scaled_data)
 
 # Retrieve cluster labels and centroids

@@ -1,9 +1,46 @@
-from nba_api.stats.static import players
-from nba_api.stats.endpoints import (
-    playercareerstats,
-    playerdashboardbyshootingsplits,
-)
+from nba_api.stats.endpoints import playercareerstats, playerdashboardbyshootingsplits
 import pandas as pd
+import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
+import time
+
+# Custom session with retries and backoff
+def create_retry_session(retries=5, backoff_factor=2, timeout=60):
+    session = requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=[429, 500, 502, 503, 504],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount("http://", adapter)
+    session.mount("https://", adapter)
+    session.request = lambda *args, **kwargs: requests.request(
+        *args, **kwargs, timeout=timeout
+    )
+    return session
+
+# Initialize retry session
+retry_session = create_retry_session()
+
+# Retry wrapper for API calls
+def retry_api_call(api_function, retries=3, delay=5, **kwargs):
+    for attempt in range(retries):
+        try:
+            return api_function(**kwargs)
+        except (requests.exceptions.Timeout, requests.exceptions.ConnectionError) as e:
+            if attempt < retries - 1:
+                print(f"Retrying API call ({attempt + 1}/{retries})...")
+                time.sleep(delay)
+                continue
+            else:
+                print(f"API call failed after {retries} retries: {e}")
+                return None
+
+#------------------------------------------------------------------------------
 
 def get_player_career_stats(player_id):
     # Step 1: Get player ID    
@@ -87,7 +124,7 @@ def merged_df(o_df, s_df, f_df):
     
     # Combine shots and finish data
     clustering_df = pd.concat([crop_shots_df, crop_finish_df]).reset_index(drop=True)
-    print(clustering_df.columns)                                                                            #TODO: COPY THE COLUMNS PASTE TODO WINTERBREAK THEN DELETE
+    #print(clustering_df.columns)                                                                            #TODO: COPY THE COLUMNS PASTE TODO WINTERBREAK THEN DELETE
     
     # Transform clustering_df into a single-row format
     single_row = {}
