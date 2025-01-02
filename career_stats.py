@@ -151,9 +151,7 @@ def merged_df(o_df, s_df, f_df):
     
     # Combine shots and finish data
     clustering_df = pd.concat([crop_shots_df, crop_finish_df]).reset_index(drop=True)
-    #print(clustering_df.columns)                                                                            #TODO: COPY THE COLUMNS PASTE TODO WINTERBREAK THEN DELETE
-    
-    # Transform clustering_df into a single-row format
+
     single_row = {}
     for _, row in clustering_df.iterrows():
         group_value = row['GROUP_VALUE'].replace(" ", "_").replace("(", "").replace(")", "")
@@ -180,7 +178,7 @@ if __name__ == "__main__":
     # else:
     #     print(f"Player not found: {player}")
     
-    overall_df, shooting_df, finishing_df = get_player_career_stats('203999')
+    overall_df, shooting_df, finishing_df = get_player_career_stats('203507')
     print('\n\n------------------------------------------------------------------------------\n\n')
     print(overall_df)
     print('\n\n------------------------------------------------------------------------------\n\n')
