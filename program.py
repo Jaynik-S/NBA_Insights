@@ -7,7 +7,7 @@ import os
 import matplotlib.pyplot as plt
 
 OUTPUT_FILE = "archetype_centroids.json"
-THRESHOLD_DISTANCE = 4  # Maximum distance for assigning multiple archetypes
+THRESHOLD_DISTANCE = 6.8  # Maximum distance for assigning multiple archetypes
 MAX_ARCHETYPES = 3  # Maximum number of archetypes a player can have
 
 player_name = ""

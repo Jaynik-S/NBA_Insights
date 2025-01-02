@@ -147,6 +147,15 @@ def single_player_coor(p_id):
             return []
 
         player_stats = numeric_stats.values.flatten()
+
+        # Pad or trim player_stats to match the scaler's expected input size
+        expected_feature_count = scaler.mean_.shape[0]
+        if len(player_stats) < expected_feature_count:
+            player_stats = np.pad(player_stats, (0, expected_feature_count - len(player_stats)), 'constant')
+        elif len(player_stats) > expected_feature_count:
+            player_stats = player_stats[:expected_feature_count]
+
+        # Scale and reduce dimensions
         scaled_stats = scaler.transform([player_stats])
         reduced_stats = pca.transform(scaled_stats)
 
@@ -155,5 +164,6 @@ def single_player_coor(p_id):
     except Exception as e:
         print(f"Error processing player ID {p_id}: {e}")
         return []
+
 
 
