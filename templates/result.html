@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Archetype Result</title>
+</head>
+<body>
+    <h1>Archetype Result</h1>
+    {% if result.error %}
+        <p>{{ result.error }}</p>
+    {% else %}
+        <p>Player Name: {{ result.name }}</p>
+        <p>Archetypes: {{ result.archetypes | join(', ') }}</p>
+    {% endif %}
+    <a href="/">Search Again</a>
+</body>
+</html>
