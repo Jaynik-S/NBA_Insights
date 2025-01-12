@@ -4,15 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Archetype Result</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>Archetype Result</h1>
-    {% if result.error %}
-        <p>{{ result.error }}</p>
-    {% else %}
-        <p>Player Name: {{ result.name }}</p>
-        <p>Archetypes: {{ result.archetypes | join(', ') }}</p>
-    {% endif %}
-    <a href="/">Search Again</a>
+    <div class="container">
+        <h1>Archetype Result</h1>
+        {% if result.error %}
+            <p class="error">{{ result.error }}</p>
+        {% else %}
+            <p><strong>Player Name:</strong> {{ result.name }}</p>
+            <p><strong>Archetypes:</strong> {{ result.archetypes | join(', ') }}</p>
+        {% endif %}
+        <a class="button-link" href="/">Search Again</a>
+    </div>
 </body>
 </html>

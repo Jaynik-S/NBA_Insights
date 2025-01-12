@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NBA Player Archetypes</title>
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-    <h1>NBA Player Archetype Finder</h1>
-    <form action="/get_archetype" method="POST">
-        <label for="player_name">Enter Player Name:</label>
-        <input type="text" id="player_name" name="player_name" required>
-        <button type="submit">Find Archetype</button>
-    </form>
+    <div class="container">
+        <h1>NBA Player Archetype Finder</h1>
+        <form action="/get_archetype" method="POST">
+            <label for="player_name">Enter Player Name:</label>
+            <input type="text" id="player_name" name="player_name" required>
+            <button type="submit">Find Archetype</button>
+        </form>
+    </div>
 </body>
 </html>
