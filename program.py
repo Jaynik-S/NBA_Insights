@@ -5,38 +5,36 @@ import json
 from math import dist
 import os
 import matplotlib.pyplot as plt
+from flask import Flask, render_template, request
 
+app = Flask(__name__)
 OUTPUT_FILE = "archetype_centroids.json"
+STATIC_DIR = "static"
 THRESHOLD_DISTANCE = 6.8  # Maximum distance for assigning multiple archetypes
 MAX_ARCHETYPES = 3  # Maximum number of archetypes a player can have
 
-player_name = ""
-while player_name != 'finish':
-    player_name = input("Enter a player's name: ").lower()
+@app.route("/get_archetype", methods=["POST"])
+def get_archetype():
+    player_name = request.form.get("player_name", "").strip()
     player_dict = players.find_players_by_full_name(player_name)
 
     if not player_dict:
-        print(f"Player {player_name} not found.")
-        continue
+        return render_template("result.html", result={"error": "Player not found."})
 
     player_id = player_dict[0]['id']
     player_coordinates = single_player_coor(player_id)  # Get player coordinates
 
     if not player_coordinates:
-        print(f"Could not determine coordinates for {player_name}.")
-        continue
+        return render_template("result.html", result={"error": "Could not determine coordinates for the player."})
 
     if not os.path.exists(OUTPUT_FILE):
-        print(f"{OUTPUT_FILE} not found. Please run centroid_clustering.py first.")
-        continue
+        return render_template("result.html", result={"error": f"{OUTPUT_FILE} not found. Please run centroid_clustering.py first."})
 
     with open(OUTPUT_FILE, "r") as json_file:
         archetype_centroid_dict = json.load(json_file)
 
     # Calculate distances to each archetype
-    archetype_distances = {}
-    for arch, centroid in archetype_centroid_dict.items():
-        archetype_distances[arch] = dist(centroid, player_coordinates)
+    archetype_distances = {arch: dist(centroid, player_coordinates) for arch, centroid in archetype_centroid_dict.items()}
 
     # Assign the closest archetype (every player gets at least one)
     closest_archetype = min(archetype_distances, key=archetype_distances.get)
@@ -51,11 +49,10 @@ while player_name != 'finish':
             player_archetypes.pop()  # Remove the furthest archetype if at the limit
         player_archetypes.insert(0, closest_archetype)
 
-    print(f"{player_name}'s archetypes: {player_archetypes}")
-
-    # Plot the centroids, archetypes, and player point
+    # Generate and save plot
+    plot_path = f"static/{player_name}_archetypes.png"
     plt.figure(figsize=(12, 8))
-    
+
     # Plot archetype centroids
     for archetype, centroid in archetype_centroid_dict.items():
         plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200,
@@ -71,6 +68,14 @@ while player_name != 'finish':
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.legend(loc='best')
     plt.grid(True, alpha=0.3)
-    plt.show()
+    plt.savefig(plot_path)
+    plt.close()
 
-print("PROGRAM FINISHED.")
+    return render_template("result.html", result={
+        "name": player_name,
+        "archetypes": player_archetypes,
+        "plot_path": f"/{plot_path}"
+    })
+
+if __name__ == "__main__":
+    app.run(debug=True)
