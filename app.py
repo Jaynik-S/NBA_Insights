@@ -8,7 +8,7 @@ from math import dist
 app = Flask(__name__)
 
 # Configurations
-OUTPUT_FILE = "archetype_centroids.json"
+OUTPUT_FILE = "data/archetype_centroids.json"
 THRESHOLD_DISTANCE = 6.8
 MAX_ARCHETYPES = 3
 

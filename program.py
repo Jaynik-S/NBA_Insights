@@ -8,7 +8,9 @@ import matplotlib.pyplot as plt
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-OUTPUT_FILE = "archetype_centroids.json"
+OUTPUT_FILE = "data/archetype_centroids.json"
+SCALER_FILE = "data/scaler.pkl"
+PCA_FILE = "data/pca.pkl"
 STATIC_DIR = "static"
 THRESHOLD_DISTANCE = 6.8  # Maximum distance for assigning multiple archetypes
 MAX_ARCHETYPES = 3  # Maximum number of archetypes a player can have

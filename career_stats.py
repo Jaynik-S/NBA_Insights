@@ -4,16 +4,16 @@ from nba_api.stats.endpoints import playercareerstats, playerdashboardbyshooting
 from nba_api.stats.static import players
 import pandas as pd
 
-CACHE_FILE = "player_stats_cache.json"
+CACHE_FILE = "data/player_stats_cache.json"
 
 def load_cache():
-    if os.path.exists("player_stats_cache.json"):
-        with open("player_stats_cache.json", "r") as f:
+    if os.path.exists(CACHE_FILE):
+        with open(CACHE_FILE, "r") as f:
             return json.load(f)
     return {}
 
 def save_cache(cache):
-    with open("player_stats_cache.json", "w") as f:
+    with open(CACHE_FILE, "w") as f:
         json.dump(cache, f)
 
 # Load cache globally at the start

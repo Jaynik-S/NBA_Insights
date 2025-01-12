@@ -10,9 +10,9 @@ import json
 import os
 import pickle  # For saving and loading scaler and PCA
 
-OUTPUT_FILE = "archetype_centroids.json"
-SCALER_FILE = "scaler.pkl"
-PCA_FILE = "pca.pkl"
+OUTPUT_FILE = "data/archetype_centroids.json"
+SCALER_FILE = "data/scaler.pkl"
+PCA_FILE = "data/pca.pkl"
 
 
 if __name__ == "__main__":
