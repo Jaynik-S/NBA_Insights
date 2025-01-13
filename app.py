@@ -51,10 +51,12 @@ def get_player_archetypes(player_name):
     if not os.path.exists(STATIC_DIR):
         os.makedirs(STATIC_DIR)
 
+    # Sort centroids by distance and select the closest 5
+    sorted_centroids = sorted(archetype_centroid_dict.items(), key=lambda x: dist(x[1], player_coordinates))[:5]
+
     plt.figure(figsize=(12, 8))
-    for archetype, centroid in archetype_centroid_dict.items():
-        plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200,
-                    label=archetype if archetype in player_archetypes else None)
+    for archetype, centroid in sorted_centroids:
+        plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200, label=archetype)
         plt.text(centroid[0] + 0.1, centroid[1], archetype, fontsize=9)
 
     plt.scatter(player_coordinates[0], player_coordinates[1], c='blue', marker='o', s=100, label=f"{player_name}'s location")
@@ -67,6 +69,7 @@ def get_player_archetypes(player_name):
     plt.grid(True, alpha=0.3)
     plt.savefig(file_path, dpi=300, bbox_inches='tight', transparent=True)
     plt.close()
+
 
     return {"name": player_name, "archetypes": player_archetypes, "plot_path": os.path.basename(file_path)}
 
