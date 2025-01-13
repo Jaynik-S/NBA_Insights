@@ -15,8 +15,7 @@ STATIC_DIR = "static"
 THRESHOLD_DISTANCE = 6.8  # Maximum distance for assigning multiple archetypes
 MAX_ARCHETYPES = 3  # Maximum number of archetypes a player can have
 
-@app.route("/get_archetype", methods=["POST"])
-def get_archetype():
+def get_archetype(player_name):
     player_name = request.form.get("player_name", "").strip()
     player_dict = players.find_players_by_full_name(player_name)
 
@@ -52,16 +51,18 @@ def get_archetype():
         player_archetypes.insert(0, closest_archetype)
 
     # Generate and save plot
-    plot_path = f"static/{player_name}_archetypes.png"
-    plt.figure(figsize=(12, 8))
+    file_path = os.path.join(STATIC_DIR, f"{player_name}_archetypes.png")
 
-    # Plot archetype centroids
+    # Ensure the static directory exists
+    if not os.path.exists(STATIC_DIR):
+        os.makedirs(STATIC_DIR)
+
+    plt.figure(figsize=(12, 8))
     for archetype, centroid in archetype_centroid_dict.items():
         plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200,
                     label=archetype if archetype in player_archetypes else None)
         plt.text(centroid[0] + 0.1, centroid[1], archetype, fontsize=9)
 
-    # Plot player coordinates
     plt.scatter(player_coordinates[0], player_coordinates[1], c='blue', marker='o', s=100, label=f"{player_name}'s location")
     plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=10, color='blue')
 
@@ -70,13 +71,14 @@ def get_archetype():
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.legend(loc='best')
     plt.grid(True, alpha=0.3)
-    plt.savefig(plot_path)
+    plt.savefig(file_path, dpi=300, bbox_inches='tight', transparent=True)
     plt.close()
+
 
     return render_template("result.html", result={
         "name": player_name,
         "archetypes": player_archetypes,
-        "plot_path": f"/{plot_path}"
+        "plot_path": os.path.basename(file_path)
     })
 
 if __name__ == "__main__":

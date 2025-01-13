@@ -4,6 +4,7 @@ from centroid_clustering import single_player_coor
 import json
 import os
 from math import dist
+import matplotlib.pyplot as plt
 
 app = Flask(__name__)
 
@@ -11,6 +12,7 @@ app = Flask(__name__)
 OUTPUT_FILE = "data/archetype_centroids.json"
 THRESHOLD_DISTANCE = 6.8
 MAX_ARCHETYPES = 3
+STATIC_DIR = "static"
 
 # Helper function to get player archetypes
 def get_player_archetypes(player_name):
@@ -44,7 +46,29 @@ def get_player_archetypes(player_name):
             player_archetypes.pop()
         player_archetypes.insert(0, closest_archetype)
 
-    return {"name": player_name, "archetypes": player_archetypes}
+    # Generate and save plot
+    file_path = os.path.join(STATIC_DIR, f"{player_name}_archetypes.png")
+    if not os.path.exists(STATIC_DIR):
+        os.makedirs(STATIC_DIR)
+
+    plt.figure(figsize=(12, 8))
+    for archetype, centroid in archetype_centroid_dict.items():
+        plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200,
+                    label=archetype if archetype in player_archetypes else None)
+        plt.text(centroid[0] + 0.1, centroid[1], archetype, fontsize=9)
+
+    plt.scatter(player_coordinates[0], player_coordinates[1], c='blue', marker='o', s=100, label=f"{player_name}'s location")
+    plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=10, color='blue')
+
+    plt.title(f"Archetype Visualization for {player_name.title()}", fontsize=16)
+    plt.xlabel("Principal Component 1", fontsize=14)
+    plt.ylabel("Principal Component 2", fontsize=14)
+    plt.legend(loc='best')
+    plt.grid(True, alpha=0.3)
+    plt.savefig(file_path, dpi=300, bbox_inches='tight', transparent=True)
+    plt.close()
+
+    return {"name": player_name, "archetypes": player_archetypes, "plot_path": os.path.basename(file_path)}
 
 # Routes
 @app.route('/')
