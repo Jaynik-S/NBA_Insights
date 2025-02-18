@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from nba_api.stats.static import players
 from centroid_clustering import single_player_coor
 import json
@@ -75,6 +75,18 @@ def get_player_archetypes(player_name):
 
 # Routes
 @app.route('/')
+def select():
+    return render_template('select.html')
+
+@app.route('/select_program', methods=['POST'])
+def select_program():
+    program = request.form['program']
+    if program == 'index':
+        return redirect(url_for('index'))
+    elif program == 'new_program':
+        return redirect(url_for('new_program'))
+
+@app.route('/index')
 def index():
     return render_template('index.html')
 
@@ -84,5 +96,24 @@ def get_archetype():
     result = get_player_archetypes(player_name)
     return render_template('result.html', result=result)
 
-if __name__ == "__main__":
+@app.route('/new_program')
+def new_program():
+    return render_template('new_program.html')
+
+@app.route('/run_new_program', methods=['POST'])
+def run_new_program():
+    input_data = request.form['input_data']
+    # Implement the logic for the new program here
+    result = process_new_program(input_data)
+    return render_template('result.html', result=result)
+
+def process_new_program(input_data):
+    # Placeholder function for new program logic
+    return {
+        'name': input_data,
+        'archetypes': ['Example Archetype 1', 'Example Archetype 2'],
+        'plot_path': None
+    }
+
+if __name__ == '__main__':
     app.run(debug=True)

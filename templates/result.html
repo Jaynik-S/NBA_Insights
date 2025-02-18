@@ -8,22 +8,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>Player Archetype Result</h1>
+        <h1>Result</h1>
         {% if result.error %}
             <p class="error">{{ result.error }}</p>
         {% else %}
-            <p><strong>Player Name:</strong> {{ result.name }}</p>
+            <p><strong>Name:</strong> {{ result.name }}</p>
             <p><strong>Archetypes:</strong> {{ result.archetypes | join(', ') }}</p>
             <div class="graph">
-                <h2>Player Archetype Visualization</h2>
+                <h2>Visualization</h2>
                 {% if result.plot_path %}
-                    <img src="{{ url_for('static', filename=result.plot_path) }}" alt="Archetype Visualization" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px;">
+                    <img src="{{ url_for('static', filename=result.plot_path) }}" alt="Visualization" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px;">
                 {% else %}
                     <p>No visualization available.</p>
                 {% endif %}
             </div>
         {% endif %}
-        <a class="button-link" href="/">Search Again</a>
     </div>
 </body>
 </html>

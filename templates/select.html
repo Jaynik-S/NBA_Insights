@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Program</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Select Program</h1>
+        <form action="/select_program" method="POST">
+            <label for="program">Choose a program:</label>
+            <select id="program" name="program" required>
+                <option value="index">NBA Player Archetype Finder</option>
+                <option value="compare">New Program</option>
+            </select>
+            <button type="submit">Go</button>
+        </form>
+    </div>
+</body>
+</html>

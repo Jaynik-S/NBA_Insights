@@ -84,7 +84,7 @@ if __name__ == "__main__":
         1: "Crafty Playmaking Guard",
         2: "All-Star Versatile Scorer",
         3: "Defensive Frontcourt Anchor",
-        4: "High-Energy Play Finisher",
+        4: "High-Energy Playmaking Finisher",
         5: "Specialist Role Player",
         6: "Elite Two-Way Leader",
         7: "Playmaking Facilitator",
