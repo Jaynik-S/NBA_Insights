@@ -96,7 +96,7 @@ if __name__ == "__main__":
         13: "Rebounding and Hustle Specialist",
         14: "High-Upside All-Around Talent",
         15: "Elite Rim Protector",
-        16: "Mid-Range Scoring Specialist",
+        16: "Shooting Specialist",
         17: "3-and-D Sniper"
     }
 

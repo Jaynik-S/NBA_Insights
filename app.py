@@ -85,6 +85,11 @@ def select_program():
         return redirect(url_for('index'))
     elif program == 'new_program':
         return redirect(url_for('new_program'))
+    elif program == 'compare':
+        return redirect(url_for('compare'))
+
+    # Return an error if the program is not recognized
+    return "Invalid program selected", 400
 
 @app.route('/index')
 def index():
@@ -96,9 +101,9 @@ def get_archetype():
     result = get_player_archetypes(player_name)
     return render_template('result.html', result=result)
 
-@app.route('/new_program')
-def new_program():
-    return render_template('new_program.html')
+@app.route('/compare')
+def compare():
+    return render_template('compare.html')
 
 @app.route('/run_new_program', methods=['POST'])
 def run_new_program():

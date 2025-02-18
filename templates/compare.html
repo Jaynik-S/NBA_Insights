@@ -3,16 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Program</title>
+    <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
     <div class="container">
-        <h1>New Program</h1>
-        <form action="/run_new_program" method="POST">
-            <label for="input_data">Enter Data:</label>
-            <input type="text" id="input_data" name="input_data" required>
-            <button type="submit">Run Program</button>
+        <h1>Compare Players</h1>
+        <form action="/compare_players" method="POST">
+            <div class="row">
+                <div class="column">
+                    <label for="player1_name">Enter Player 1 Name:</label>
+                    <input type="text" id="player1_name" name="player1_name" required>
+                </div>
+                <div class="column">
+                    <label for="player2_name">Enter Player 2 Name:</label>
+                    <input type="text" id="player2_name" name="player2_name" required>
+                </div>
+            </div>
+            <button type="submit">Compare</button>
         </form>
     </div>
 </body>

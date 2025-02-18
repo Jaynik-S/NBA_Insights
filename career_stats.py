@@ -171,16 +171,17 @@ def merged_df(o_df, s_df, f_df):
 
 
 if __name__ == "__main__":
-    # inputted_name = input('ENTER A PLAYERS NAME: ')
-    # player_dict = players.find_players_by_full_name(inputted_name)
-    # if player_dict:
-    #     player_id = player_dict[0]['id']
-    # else:
-    #     print(f"Player not found: {player}")
+    inputted_name = input('ENTER A PLAYERS NAME: ')
+    player_dict = players.find_players_by_full_name(inputted_name)
+    if player_dict:
+        player_id = player_dict[0]['id']
+    else:
+        print(f"Player not found: {player}")
     
-    overall_df, shooting_df, finishing_df = get_player_career_stats('202695')
+    overall_df, shooting_df, finishing_df = get_player_career_stats(player_id)
+    # overall_df, shooting_df, finishing_df = get_player_career_stats('202695')
     print('\n\n------------------------------------------------------------------------------\n\n')
-    print(overall_df)
+    print(overall_df.columns)
     print('\n\n------------------------------------------------------------------------------\n\n')
     print(shooting_df)
     print('\n\n------------------------------------------------------------------------------\n\n')
@@ -188,6 +189,6 @@ if __name__ == "__main__":
     print('\n\n------------------------------------------------------------------------------\n\n')
 
     
-    combined_df = merged_df(overall_df, shooting_df, finishing_df)
-    print(combined_df)
+    # combined_df = merged_df(overall_df, shooting_df, finishing_df)
+    # print(combined_df)
 
