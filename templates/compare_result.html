@@ -5,14 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .stats-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .stats-table th, .stats-table td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .stats-table th {
+            background-color: #f2f2f2;
+        }
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .stats-column {
+            width: 48%;
+        }
+    </style>
     <script>
         function updateStats(player, seasonId) {
             const stats = JSON.parse(document.getElementById(player + '_stats').textContent);
             const seasonStats = stats.find(stat => stat.SEASON_ID === seasonId);
             const statsDiv = document.getElementById(player + '_season_stats');
-            statsDiv.innerHTML = '';
+            statsDiv.innerHTML = '<table class="stats-table"><thead><tr><th>Stat</th><th>Value</th></tr></thead><tbody></tbody></table>';
+            const tbody = statsDiv.querySelector('tbody');
             for (const [key, value] of Object.entries(seasonStats)) {
-                statsDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+                tbody.innerHTML += `<tr><td><strong>${key}</strong></td><td>${value}</td></tr>`;
             }
         }
     </script>
@@ -20,27 +43,29 @@
 <body>
     <div class="container">
         <h1>Compare Players</h1>
-        <div>
-            <h2>Player 1</h2>
-            <select onchange="updateStats('player1', this.value)">
-                <option value="">Select Season</option>
-                {% for season in p1_seasons %}
-                    <option value="{{ season }}">{{ season }}</option>
-                {% endfor %}
-            </select>
-            <div id="player1_season_stats"></div>
-            <pre id="player1_stats" style="display:none;">{{ player1 | tojson }}</pre>
-        </div>
-        <div>
-            <h2>Player 2</h2>
-            <select onchange="updateStats('player2', this.value)">
-                <option value="">Select Season</option>
-                {% for season in p2_seasons %}
-                    <option value="{{ season }}">{{ season }}</option>
-                {% endfor %}
-            </select>
-            <div id="player2_season_stats"></div>
-            <pre id="player2_stats" style="display:none;">{{ player2 | tojson }}</pre>
+        <div class="stats-container">
+            <div class="stats-column">
+                <h2>Player 1</h2>
+                <select onchange="updateStats('player1', this.value)">
+                    <option value="">Select Season</option>
+                    {% for season in p1_seasons %}
+                        <option value="{{ season }}">{{ season }}</option>
+                    {% endfor %}
+                </select>
+                <div id="player1_season_stats"></div>
+                <pre id="player1_stats" style="display:none;">{{ player1 | tojson }}</pre>
+            </div>
+            <div class="stats-column">
+                <h2>Player 2</h2>
+                <select onchange="updateStats('player2', this.value)">
+                    <option value="">Select Season</option>
+                    {% for season in p2_seasons %}
+                        <option value="{{ season }}">{{ season }}</option>
+                    {% endfor %}
+                </select>
+                <div id="player2_season_stats"></div>
+                <pre id="player2_stats" style="display:none;">{{ player2 | tojson }}</pre>
+            </div>
         </div>
     </div>
 </body>
