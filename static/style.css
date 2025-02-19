@@ -81,3 +81,46 @@ a.button-link:hover {
     font-weight: bold;
     margin-top: 20px;
 }
+
+/* Stats Table (Compare_Result) */
+.stats-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+.stats-table th, .stats-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+.stats-table th {
+    background-color: #f2f2f2;
+}
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+}
+.stats-column {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Player Image */
+.player-image {
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 20px 0;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.player-image img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}

@@ -98,7 +98,9 @@ def cluster():
 def get_archetype():
     player_name = request.form['player_name']
     result = get_player_archetypes(player_name)
-    return render_template('cluster_result.html', result=result)
+    player_dict = players.find_players_by_full_name(player_name)
+    player_id = player_dict[0]['id']
+    return render_template('cluster_result.html', result=result, player_id=player_id)
 
 @app.route('/compare')
 def compare():
@@ -124,7 +126,6 @@ def run_compare():
     p1_columns = p1_stats.columns.tolist()
     p2_columns = p2_stats.columns.tolist()
     
-    return render_template('compare_result.html', player1=p1_stats.to_dict(orient="records"), player2=p2_stats.to_dict(orient="records"), p1_seasons=p1_seasons, p2_seasons=p2_seasons, p1_columns=p1_columns, p2_columns=p2_columns)
-
+    return render_template('compare_result.html', player1=p1_stats.to_dict(orient="records"), player2=p2_stats.to_dict(orient="records"), p1_seasons=p1_seasons, p2_seasons=p2_seasons, p1_columns=p1_columns, p2_columns=p2_columns, player1_id=player1_id, player2_id=player2_id)
 if __name__ == '__main__':
     app.run(debug=True)

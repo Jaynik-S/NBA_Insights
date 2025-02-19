@@ -6,26 +6,6 @@
     <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        .stats-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .stats-table th, .stats-table td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: left;
-        }
-        .stats-table th {
-            background-color: #f2f2f2;
-        }
-        .stats-container {
-            display: flex;
-            justify-content: space-between;
-        }
-        .stats-column {
-            width: 48%;
-        }
     </style>
     <script>
         function updateStats(player, seasonId) {
@@ -58,6 +38,9 @@
                 <div id="player1_season_stats"></div>
                 <pre id="player1_stats" style="display:none;">{{ player1 | tojson }}</pre>
                 <pre id="player1_columns" style="display:none;">{{ p1_columns | tojson }}</pre>
+                <div class="player-image">
+                    <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player1_id }}.png" alt="Player 1 Image">
+                </div>
             </div>
             <div class="stats-column">
                 <h2>Player 2</h2>
@@ -70,6 +53,9 @@
                 <div id="player2_season_stats"></div>
                 <pre id="player2_stats" style="display:none;">{{ player2 | tojson }}</pre>
                 <pre id="player2_columns" style="display:none;">{{ p2_columns | tojson }}</pre>
+                <div class="player-image">
+                    <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player2_id }}.png" alt="Player 2 Image">
+                </div>
             </div>
         </div>
     </div>
