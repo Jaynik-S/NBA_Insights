@@ -81,12 +81,12 @@ def get_player_career_stats(player_id):
     # Add per-game stats
     if "GP" in career_df.columns and career_df["GP"].sum() > 0:
         # Basic per-game stats
-        career_df["PTS_PER_GAME"] = round(career_df["PTS"] / career_df["GP"], 2) if "PTS" in career_df else None
-        career_df["REB_PER_GAME"] = round(career_df["REB"] / career_df["GP"], 2) if "REB" in career_df else None
-        career_df["AST_PER_GAME"] = round(career_df["AST"] / career_df["GP"], 2) if "AST" in career_df else None
-        career_df["STL_PER_GAME"] = round(career_df["STL"] / career_df["GP"], 2) if "STL" in career_df else None
-        career_df["BLK_PER_GAME"] = round(career_df["BLK"] / career_df["GP"], 2) if "BLK" in career_df else None
-        career_df["MIN_PER_GAME"] = round(career_df["MIN"] / career_df["GP"], 2) if "MIN" in career_df else None
+        career_df["PTS_PG"] = round(career_df["PTS"] / career_df["GP"], 2) if "PTS" in career_df else None
+        career_df["REB_PG"] = round(career_df["REB"] / career_df["GP"], 2) if "REB" in career_df else None
+        career_df["AST_PG"] = round(career_df["AST"] / career_df["GP"], 2) if "AST" in career_df else None
+        career_df["STL_PG"] = round(career_df["STL"] / career_df["GP"], 2) if "STL" in career_df else None
+        career_df["BLK_PG"] = round(career_df["BLK"] / career_df["GP"], 2) if "BLK" in career_df else None
+        career_df["MIN_PG"] = round(career_df["MIN"] / career_df["GP"], 2) if "MIN" in career_df else None
 
         # Additional per-game stats
         career_df["OREB_PG"] = round(career_df["OREB"] / career_df["GP"], 2) if "OREB" in career_df else None
