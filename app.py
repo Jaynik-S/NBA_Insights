@@ -81,44 +81,46 @@ def select():
 @app.route('/select_program', methods=['POST'])
 def select_program():
     program = request.form['program']
-    if program == 'index':
-        return redirect(url_for('index'))
-    elif program == 'new_program':
-        return redirect(url_for('new_program'))
+    if program == 'cluster':
+        return redirect(url_for('cluster'))
     elif program == 'compare':
         return redirect(url_for('compare'))
 
     # Return an error if the program is not recognized
     return "Invalid program selected", 400
 
-@app.route('/index')
-def index():
-    return render_template('index.html')
+@app.route('/cluster')
+def cluster():
+    return render_template('cluster.html')
 
 @app.route('/get_archetype', methods=['POST'])
 def get_archetype():
     player_name = request.form['player_name']
     result = get_player_archetypes(player_name)
-    return render_template('result.html', result=result)
+    return render_template('cluster_result.html', result=result)
 
 @app.route('/compare')
 def compare():
     return render_template('compare.html')
 
-@app.route('/run_new_program', methods=['POST'])
-def run_new_program():
-    input_data = request.form['input_data']
-    # Implement the logic for the new program here
-    result = process_new_program(input_data)
-    return render_template('result.html', result=result)
+@app.route('/compare_players', methods=['POST'])
+def run_compare():
+    player1_name = request.form['player1_name']
+    player2_name = request.form['player2_name']
+    player1_dict = players.find_players_by_full_name(player1_name)
+    if not player1_dict:
+        return {"error": f"Player 1 '{player1_name}' not found."}
+    player1_id = player1_dict[0]['id']
+    player2_dict = players.find_players_by_full_name(player2_name)
+    if not player2_dict:
+        return {"error": f"Player 2 '{player2_name}' not found."}
+    player2_id = player1_dict[0]['id']
+    p1_stats = cs.get_player_career_stats(player1_id)
+    p2_stats = cs.get_player_career_stats(player2_id)
+    
+    
+    return render_template('compare_result.html', player1=p1_stats, player2=p2_stats)
 
-def process_new_program(input_data):
-    # Placeholder function for new program logic
-    return {
-        'name': input_data,
-        'archetypes': ['Example Archetype 1', 'Example Archetype 2'],
-        'plot_path': None
-    }
 
 if __name__ == '__main__':
     app.run(debug=True)
