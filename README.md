@@ -10,6 +10,7 @@ The NBA Player Archetype Finder is a web application designed to classify NBA pl
 - **Archetype Identification**: Automatically calculates a player's archetypes by comparing their statistics with predefined archetype centroids.
 - **Multiple Archetypes**: Displays up to three archetypes for a player, depending on proximity to centroids.
 - **Visualization**: Provides a graph showing the player's coordinates and archetype centroids.
+- **Player Comparison**: Allows users to compare the career statistics of two NBA players.
 - **Caching Mechanism**: Reduces API calls by caching player statistics for efficiency.
 
 ---
@@ -21,6 +22,7 @@ The NBA Player Archetype Finder is a web application designed to classify NBA pl
 4. **Distance Calculation**: Euclidean distances between a player's coordinates and archetype centroids are computed.
 5. **Archetype Assignment**: Archetypes are assigned based on the closest centroids. A maximum of three archetypes is displayed if the distances meet a defined threshold.
 6. **Visualization**: A graph is generated to visualize the player's coordinates relative to archetype centroids.
+7. **Player Comparison**: Career statistics of two players are fetched and displayed side-by-side for comparison.
 
 ---
 
@@ -41,11 +43,13 @@ The NBA Player Archetype Finder is a web application designed to classify NBA pl
 1. **Enter Player Name**: Go to the homepage and type the player's name in the input field (e.g., *LeBron James*).
 2. **View Archetypes**: The application processes the input and displays the player's archetypes (e.g., *Elite Two-Way Leader, Statistical Unicorn*).
 3. **Graph Visualization**: A visualization is generated showing the player's position relative to archetype centroids.
+4. **Compare Players**: Navigate to the compare page, enter the names of two players, and view their career statistics side-by-side.
 
 ### Sample Output
 - **Player Name**: LeBron James  
 - **Archetypes**: Elite Two-Way Leader, All-Star Versatile Scorer, Playmaking Facilitator  
 - **Visualization**: *(Generated graph showing player position relative to archetypes)*
+- **Comparison**: *(Side-by-side career statistics of two players)*
 
 ---
 
