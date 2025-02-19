@@ -178,11 +178,10 @@ if __name__ == "__main__":
     else:
         print(f"Player not found: {player}")
     
-    overall_df = get_player_career_stats(player_id)
-    #overall_df, shooting_df, finishing_df = get_player_career_stats(player_id)
+    overall_df, shooting_df, finishing_df = get_player_career_stats(player_id)
     # overall_df, shooting_df, finishing_df = get_player_career_stats('202695')
     print('\n\n------------------------------------------------------------------------------\n\n')
-    print(overall_df)
+    print(overall_df.columns)
     print('\n\n------------------------------------------------------------------------------\n\n')
     # print(shooting_df)
     # print('\n\n------------------------------------------------------------------------------\n\n')

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Players</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function updateStats(player, seasonId) {
+            const stats = JSON.parse(document.getElementById(player + '_stats').textContent);
+            const seasonStats = stats.find(stat => stat.SEASON_ID === seasonId);
+            const statsDiv = document.getElementById(player + '_season_stats');
+            statsDiv.innerHTML = '';
+            for (const [key, value] of Object.entries(seasonStats)) {
+                statsDiv.innerHTML += `<p><strong>${key}:</strong> ${value}</p>`;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Compare Players</h1>
+        <div>
+            <h2>Player 1</h2>
+            <select onchange="updateStats('player1', this.value)">
+                <option value="">Select Season</option>
+                {% for season in p1_seasons %}
+                    <option value="{{ season }}">{{ season }}</option>
+                {% endfor %}
+            </select>
+            <div id="player1_season_stats"></div>
+            <pre id="player1_stats" style="display:none;">{{ player1 | tojson }}</pre>
+        </div>
+        <div>
+            <h2>Player 2</h2>
+            <select onchange="updateStats('player2', this.value)">
+                <option value="">Select Season</option>
+                {% for season in p2_seasons %}
+                    <option value="{{ season }}">{{ season }}</option>
+                {% endfor %}
+            </select>
+            <div id="player2_season_stats"></div>
+            <pre id="player2_stats" style="display:none;">{{ player2 | tojson }}</pre>
+        </div>
+    </div>
+</body>
+</html>

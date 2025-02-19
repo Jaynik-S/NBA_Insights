@@ -5,6 +5,7 @@ import json
 import os
 from math import dist
 import matplotlib.pyplot as plt
+import career_stats as cs
 
 app = Flask(__name__)
 
@@ -114,13 +115,16 @@ def run_compare():
     player2_dict = players.find_players_by_full_name(player2_name)
     if not player2_dict:
         return {"error": f"Player 2 '{player2_name}' not found."}
-    player2_id = player1_dict[0]['id']
-    p1_stats = cs.get_player_career_stats(player1_id)
-    p2_stats = cs.get_player_career_stats(player2_id)
+    player2_id = player2_dict[0]['id']
+    p1_stats, _, _ = cs.get_player_career_stats(player1_id)
+    p2_stats, _, _ = cs.get_player_career_stats(player2_id)
     
+    p1_seasons = p1_stats["SEASON_ID"].tolist()
+    p2_seasons = p2_stats["SEASON_ID"].tolist()
+    p1_columns = p1_stats.columns.tolist()
+    p2_columns = p2_stats.columns.tolist()
     
-    return render_template('compare_result.html', player1=p1_stats, player2=p2_stats)
-
+    return render_template('compare_result.html', player1=p1_stats.to_dict(orient="records"), player2=p2_stats.to_dict(orient="records"), p1_seasons=p1_seasons, p2_seasons=p2_seasons, p1_columns=p1_columns, p2_columns=p2_columns)
 
 if __name__ == '__main__':
     app.run(debug=True)
