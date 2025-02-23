@@ -1,7 +1,6 @@
-# NBA Player Archetype Finder
+# NBA Insights
 
-## Project Overview
-The NBA Player Archetype Finder is a web application designed to classify NBA players into predefined archetypes based on their career statistics. This application leverages the `nba_api` to fetch player data, applies advanced data preprocessing techniques, and uses clustering algorithms to assign archetypes. The results include a graphical visualization of the player's coordinates and archetype centroids.
+NBA Insights is a web application designed to classify NBA players into predefined archetypes based on their career statistics. This application leverages the `nba_api` to fetch player data, applies advanced data preprocessing techniques, and uses clustering algorithms to assign archetypes. The results include a graphical visualization of the player's coordinates and archetype centroids. Additionally, the application allows users to compare the career statistics of two NBA players side-by-side, providing a comprehensive tool for basketball analysis.
 
 ---
 
@@ -77,5 +76,13 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - **nba_api**: For providing easy access to NBA data.
 - **Flask**: For the web framework.
 - **Matplotlib**: For creating visualizations.
+- **scikit-learn**: For data preprocessing and clustering algorithms.
+- **Pandas**: For data manipulation and analysis.
+- **NumPy**: For numerical operations.
+- **JSON**: For storing and loading predefined centroids and models.
+- **Pickle**: For serializing and deserializing the scaler and PCA models.
+- **Requests**: For handling HTTP requests to the NBA API.
+- **Jinja2**: For templating in Flask.
+- **Gunicorn**: For deploying the Flask application.
 
 Feel free to reach out if you have questions or need assistance setting up the project!
