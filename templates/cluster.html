@@ -8,6 +8,9 @@
 </head>
 <body>
     <div class="container">
+        <a href="{{ url_for('select') }}">
+            <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO.png') }}" alt="NBA Insights Logo" class="top-right-logo">
+        </a>
         <h1>NBA Player Archetype Finder</h1>
         <form action="/get_archetype" method="POST">
             <label for="player_name">Enter Player Name:</label>

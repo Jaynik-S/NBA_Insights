@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="container">
+        <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO.png') }}" alt="NBA Insights Logo" class="center-logo">
         <h1>Select Program</h1>
         <form action="/select_program" method="POST">
             <button type="submit" name="program" value="cluster">Player Archetype Finder</button>

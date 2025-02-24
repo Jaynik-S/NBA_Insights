@@ -21,7 +21,7 @@ body {
 /* Headings */
 h1 {
     font-size: 24px;
-    color: #444;
+    color: #000000;
 }
 
 /* Forms */
@@ -45,7 +45,7 @@ input[type="text"] {
 }
 
 button {
-    background-color: #007bff;
+    background-color: #1E1254;
     color: #fff;
     padding: 10px 20px;
     font-size: 16px;
@@ -56,7 +56,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #2D1B7E;
 }
 
 /* Links */
@@ -64,7 +64,7 @@ a.button-link {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1E1254;
     color: #fff;
     text-decoration: none;
     border-radius: 4px;
@@ -72,7 +72,7 @@ a.button-link {
 }
 
 a.button-link:hover {
-    background-color: #0056b3;
+    background-color: #1E1254;
 }
 
 /* Error Message */
@@ -141,4 +141,20 @@ select {
 select:focus {
     outline: none;
     border-color: #007bff;
+}
+
+/* Logo Styling */
+.center-logo {
+    display: block;
+    margin: 50px auto;
+    width: 500px;
+    height: auto;
+}
+
+.top-right-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    max-width: 100px;
+    cursor: pointer;
 }
