@@ -47,8 +47,8 @@ input[type="text"] {
 button {
     background-color: #1E1254;
     color: #fff;
-    padding: 10px 20px;
-    font-size: 16px;
+    padding: 12px 24px; /* Increased padding */
+    font-size: 18px; /* Increased font size */
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -63,7 +63,7 @@ button:hover {
 a.button-link {
     display: inline-block;
     margin-top: 20px;
-    padding: 10px 20px;
+    padding: 12px 24px; /* Increased padding */
     background-color: #1E1254;
     color: #fff;
     text-decoration: none;
@@ -157,4 +157,31 @@ select:focus {
     left: 20px;
     max-width: 100px;
     cursor: pointer;
+}
+
+/* Footer Styling */
+footer {
+    background-color: #1E1254;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+
+}
+
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+
+footer a:hover {
+    color: #ccc;
 }
