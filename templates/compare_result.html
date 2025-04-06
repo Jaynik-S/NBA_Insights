@@ -31,7 +31,7 @@
         <h1>Compare Players</h1>
         <div class="stats-container">
             <div class="stats-column">
-                <h2>Player 1</h2>
+                <h2>{{ player1_name }}</h2>
                 <select onchange="updateStats('player1', this.value)">
                     <option value="">Select Season</option>
                     {% for season in p1_seasons %}
@@ -46,7 +46,7 @@
                 </div>
             </div>
             <div class="stats-column">
-                <h2>Player 2</h2>
+                <h2>{{ player2_name }}</h2>
                 <select onchange="updateStats('player2', this.value)">
                     <option value="">Select Season</option>
                     {% for season in p2_seasons %}
