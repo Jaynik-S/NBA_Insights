@@ -185,3 +185,10 @@ footer a {
 footer a:hover {
     color: #ccc;
 }
+
+/* Highlighted Cell */
+.highlight {
+    background-color: #d4edda;
+    font-weight: bold;
+    border: 2px solid #28a745;
+}

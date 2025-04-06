@@ -17,7 +17,26 @@
             const tbody = statsDiv.querySelector('tbody');
             columns.forEach(column => {
                 if (seasonStats[column] !== undefined) {
-                    tbody.innerHTML += `<tr><td><strong>${column}</strong></td><td>${seasonStats[column]}</td></tr>`;
+                    tbody.innerHTML += `<tr><td><strong>${column}</strong></td><td class="${player}_stat" data-column="${column}">${seasonStats[column]}</td></tr>`;
+                }
+            });
+
+            // Highlight comparison logic
+            const player1Cells = document.querySelectorAll('.player1_stat');
+            const player2Cells = document.querySelectorAll('.player2_stat');
+            player1Cells.forEach(cell => {
+                const column = cell.getAttribute('data-column');
+                const player1Value = parseFloat(cell.textContent) || 0;
+                const player2Cell = Array.from(player2Cells).find(c => c.getAttribute('data-column') === column);
+                if (player2Cell) {
+                    const player2Value = parseFloat(player2Cell.textContent) || 0;
+                    cell.classList.remove('highlight');
+                    player2Cell.classList.remove('highlight');
+                    if (player1Value > player2Value) {
+                        cell.classList.add('highlight');
+                    } else if (player2Value > player1Value) {
+                        player2Cell.classList.add('highlight');
+                    }
                 }
             });
         }
