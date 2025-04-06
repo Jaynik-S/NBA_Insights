@@ -5,6 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Archetype Result</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function updateStats(seasonId) {
+            const stats = JSON.parse(document.getElementById('player_stats').textContent);
+            const columns = JSON.parse(document.getElementById('player_columns').textContent);
+            const seasonStats = stats.find(stat => stat.SEASON_ID === seasonId);
+            const statsDiv = document.getElementById('season_stats');
+            statsDiv.innerHTML = '<table class="stats-table"><thead><tr><th>Stat</th><th>Value</th></tr></thead><tbody></tbody></table>';
+            const tbody = statsDiv.querySelector('tbody');
+            columns.forEach(column => {
+                if (seasonStats[column] !== undefined) {
+                    tbody.innerHTML += `<tr><td><strong>${column}</strong></td><td>${seasonStats[column]}</td></tr>`;
+                }
+            });
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -27,6 +42,18 @@
                 {% else %}
                     <p>No visualization available.</p>
                 {% endif %}
+            </div>
+            <div class="player-stats">
+                <h2>Current Season Stats</h2>
+                <select onchange="updateStats(this.value)">
+                    <option value="">Select Season</option>
+                    {% for season in seasons %}
+                        <option value="{{ season }}">{{ season }}</option>
+                    {% endfor %}
+                </select>
+                <div id="season_stats"></div>
+                <pre id="player_stats" style="display:none;">{{ stats | tojson }}</pre>
+                <pre id="player_columns" style="display:none;">{{ columns | tojson }}</pre>
             </div>
         {% endif %}
     </div>

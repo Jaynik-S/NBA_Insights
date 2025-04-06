@@ -100,7 +100,20 @@ def get_archetype():
     result = get_player_archetypes(player_name)
     player_dict = players.find_players_by_full_name(player_name)
     player_id = player_dict[0]['id']
-    return render_template('cluster_result.html', result=result, player_id=player_id)
+
+    # Fetch player stats
+    player_stats, _, _ = cs.get_player_career_stats(player_id)
+    seasons = player_stats["SEASON_ID"].tolist()
+    columns = player_stats.columns.tolist()
+
+    return render_template(
+        'cluster_result.html',
+        result=result,
+        player_id=player_id,
+        stats=player_stats.to_dict(orient="records"),
+        seasons=seasons,
+        columns=columns
+    )
 
 @app.route('/compare')
 def compare():
