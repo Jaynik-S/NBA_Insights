@@ -13,15 +13,13 @@
         </a>
         <h1>Compare Players</h1>
         <form action="/compare_players" method="POST">
-            <div class="row">
-                <div class="column">
-                    <label for="player1_name">Enter Player 1 Name:</label>
-                    <input type="text" id="player1_name" name="player1_name" required>
-                </div>
-                <div class="column">
-                    <label for="player2_name">Enter Player 2 Name:</label>
-                    <input type="text" id="player2_name" name="player2_name" required>
-                </div>
+            <div class="column">
+                <label for="player1_name">Enter Player 1 Name:</label>
+                <input type="text" id="player1_name" name="player1_name" placeholder="e.g., Stephen Curry" required>
+            </div>
+            <div class="column">
+                <label for="player2_name">Enter Player 2 Name:</label>
+                <input type="text" id="player2_name" name="player2_name" placeholder="e.g., Kevin Durant" required>
             </div>
             <button type="submit">Compare</button>
         </form>
