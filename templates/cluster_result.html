@@ -24,9 +24,9 @@
 <body>
     <div class="container">
         <a href="{{ url_for('select') }}">
-            <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO.png') }}" alt="NBA Insights Logo" class="top-right-logo">
+            <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO_2.png') }}" alt="NBA Insights Logo" class="top-right-logo">
         </a>
-        <h1>Result</h1>
+        <h1>Player Archetype Result</h1>
         {% if result.error %}
             <p class="error">{{ result.error }}</p>
         {% else %}
@@ -38,7 +38,7 @@
             <div class="graph">
                 <h2>Visualization</h2>
                 {% if result.plot_path %}
-                    <img src="{{ url_for('static', filename=result.plot_path) }}" alt="Visualization" style="max-width: 100%; border: 1px solid #ccc; border-radius: 8px;">
+                    <img src="{{ url_for('static', filename=result.plot_path) }}" alt="Visualization">
                 {% else %}
                     <p>No visualization available.</p>
                 {% endif %}

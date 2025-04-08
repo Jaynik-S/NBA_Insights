@@ -1,105 +1,141 @@
 /* General Styling */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8f9fa;
+    color: #343a40;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
 }
 
 /* Container */
 .container {
-    max-width: 600px;
+    max-width: 800px;
     margin: 50px auto;
-    padding: 20px;
+    padding: 40px;
     background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
 }
 
 /* Headings */
 h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #212529;
+    margin-bottom: 20px;
+}
+
+h2 {
     font-size: 24px;
-    color: #000000;
+    font-weight: 600;
+    color: #212529;
+    margin-bottom: 20px;
 }
 
 /* Forms */
 form {
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #495057;
 }
 
-input[type="text"] {
-    width: calc(100% - 22px);
-    padding: 10px;
+input[type="text"], select {
+    width: 100%;
+    padding: 12px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
     font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus, select:focus {
+    outline: none;
+    border-color: #FF834F;
 }
 
 button {
-    background-color: #1E1254;
+    background-color: #FF834F;
     color: #fff;
-    padding: 12px 24px; /* Increased padding */
-    font-size: 18px; /* Increased font size */
+    padding: 14px 28px; /* Increased padding */
+    font-size: 20px; /* Increased font size */
+    font-weight: 600;
     border: none;
-    border-radius: 4px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #2D1B7E;
+    background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
 /* Links */
 a.button-link {
     display: inline-block;
     margin-top: 20px;
-    padding: 12px 24px; /* Increased padding */
-    background-color: #1E1254;
+    padding: 12px 24px;
+    background-color: #FF834F;
     color: #fff;
     text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 a.button-link:hover {
-    background-color: #1E1254;
+    background-color: #F3955B;
+    transform: translateY(-2px);
 }
 
 /* Error Message */
 .error {
-    color: red;
-    font-weight: bold;
+    color: #dc3545;
+    font-weight: 600;
     margin-top: 20px;
 }
 
-/* Stats Table (Compare_Result) */
+/* Stats Table */
 .stats-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    font-size: 16px;
 }
+
 .stats-table th, .stats-table td {
-    border: 1px solid #ccc;
-    padding: 8px;
+    border: 1px solid #dee2e6;
+    padding: 12px;
     text-align: left;
 }
+
 .stats-table th {
-    background-color: #f2f2f2;
+    background-color: #e9ecef;
+    font-weight: 600;
 }
+
+.stats-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+.stats-table tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Stats Container */
 .stats-container {
     display: flex;
     justify-content: space-between;
+    gap: 40px;
 }
+
 .stats-column {
     width: 48%;
     display: flex;
@@ -110,14 +146,14 @@ a.button-link:hover {
 
 /* Player Image */
 .player-image {
-    order: -1; /* Moves the image to the top of the column */
+    order: -1;
     max-width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 12px;
     overflow: hidden;
     margin: 20px 0;
     text-align: center;
     flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .player-image img {
@@ -127,20 +163,16 @@ a.button-link:hover {
     margin: 0 auto;
 }
 
-/* Dropdown Menu Styling */
-select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 20px;
-    transition: border-color 0.3s ease;
+/* Graph */
+.graph img {
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-select:focus {
-    outline: none;
-    border-color: #007bff;
+/* Player Stats */
+.player-stats {
+    margin-top: 40px;
 }
 
 /* Logo Styling */
@@ -155,13 +187,19 @@ select:focus {
     position: absolute;
     top: 20px;
     left: 20px;
-    max-width: 100px;
+    width: 250px;
+    height: auto;
     cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.top-right-logo:hover {
+    transform: scale(1.05);
 }
 
 /* Footer Styling */
 footer {
-    background-color: #1E1254;
+    background-color: #0056b3;
     color: #fff;
     padding: 20px 0;
     text-align: center;
@@ -174,7 +212,6 @@ footer {
 footer p {
     margin: 0;
     font-size: 14px;
-
 }
 
 footer a {
