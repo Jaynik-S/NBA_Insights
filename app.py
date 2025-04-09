@@ -146,5 +146,5 @@ def run_compare():
     
     return render_template('compare_result.html', player1=p1_stats.to_dict(orient="records"), player2=p2_stats.to_dict(orient="records"), p1_seasons=p1_seasons, p2_seasons=p2_seasons, p1_columns=p1_columns, p2_columns=p2_columns, player1_id=player1_id, player2_id=player2_id, player1_name=player1_name, player2_name=player2_name)
 if __name__ == '__main__':
-    # app.run(debug=True)
-    pass
+    app.run(debug=True)
+    # pass
