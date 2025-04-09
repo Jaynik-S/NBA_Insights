@@ -1,4 +1,5 @@
-Fix: Only 4 Comparisons Before Fail (REDO ALL CACHING, PKL)
+Wrong name error page
+Cleanup Images in Static (how would that work on the web) (using OS lib)
 Improve UI
 
 Ship to Web (View/User Count)

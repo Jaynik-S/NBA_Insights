@@ -4,6 +4,8 @@ from centroid_clustering import single_player_coor
 import json
 import os
 from math import dist
+import matplotlib
+matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
 import career_stats as cs
 
@@ -99,6 +101,8 @@ def get_archetype():
     player_name = request.form['player_name']
     result = get_player_archetypes(player_name)
     player_dict = players.find_players_by_full_name(player_name)
+    if not player_dict:
+        return {"error": f"Player 1 '{player_name}' not found."}
     player_id = player_dict[0]['id']
 
     # Fetch player stats
