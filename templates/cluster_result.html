@@ -37,8 +37,8 @@
             </div>
             <div class="graph">
                 <h2>Visualization</h2>
-                {% if result.plot_path %}
-                    <img src="{{ url_for('static', filename=result.plot_path) }}" alt="Visualization">
+                {% if result.plot_base64 %}
+                    <img src="data:image/png;base64,{{ result.plot_base64 }}" alt="Visualization">
                 {% else %}
                     <p>No visualization available.</p>
                 {% endif %}

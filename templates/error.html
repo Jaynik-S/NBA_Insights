@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <a href="{{ url_for('select') }}">
+            <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO_2.png') }}" alt="NBA Insights Logo" class="top-right-logo">
+        </a>
+        <h1>Error</h1>
+        <p class="error">{{ error_message }}</p>
+        <a href="{{ url_for('select') }}" class="button-link">Go Back</a>
+    </div>
+    <footer>
+        <p>&copy; 2025 NBA Player Archetype Finder. <a href="https://github.com/Jaynik-S/NBA_Insights" target="_blank">GitHub</a></p>
+    </footer>
+</body>
+</html>
