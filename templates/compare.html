@@ -5,6 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script>
+        function addPlayerInput() {
+            const playerContainer = document.getElementById('players-container');
+            const playerCount = playerContainer.children.length;
+            
+            if (playerCount >= 5) {
+                alert("Maximum 5 players can be compared at once.");
+                return;
+            }
+            
+            const playerNum = playerCount + 1;
+            const playerDiv = document.createElement('div');
+            playerDiv.className = 'column';
+            playerDiv.innerHTML = `
+                <label for="player${playerNum}_name">Enter Player ${playerNum} Name:</label>
+                <input type="text" id="player${playerNum}_name" name="player${playerNum}_name" placeholder="e.g., Player ${playerNum}" ${playerNum <= 2 ? 'required' : ''}>
+                ${playerNum > 2 ? '<button type="button" class="remove-btn" onclick="removePlayerInput(this)">Remove</button>' : ''}
+            `;
+            
+            playerContainer.appendChild(playerDiv);
+        }
+        
+        function removePlayerInput(button) {
+            const playerDiv = button.parentNode;
+            const playerContainer = playerDiv.parentNode;
+            playerContainer.removeChild(playerDiv);
+            
+            // Renumber the remaining players
+            const playerDivs = playerContainer.children;
+            for (let i = 0; i < playerDivs.length; i++) {
+                const inputs = playerDivs[i].getElementsByTagName('input');
+                const labels = playerDivs[i].getElementsByTagName('label');
+                
+                if (inputs.length > 0 && labels.length > 0) {
+                    const playerNum = i + 1;
+                    inputs[0].id = `player${playerNum}_name`;
+                    inputs[0].name = `player${playerNum}_name`;
+                    labels[0].htmlFor = `player${playerNum}_name`;
+                    labels[0].textContent = `Enter Player ${playerNum} Name:`;
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="container">
@@ -13,15 +56,20 @@
         </a>
         <h1>Compare Players</h1>
         <form action="/compare_players" method="POST">
-            <div class="column">
-                <label for="player1_name">Enter Player 1 Name:</label>
-                <input type="text" id="player1_name" name="player1_name" placeholder="e.g., Stephen Curry" required>
+            <div id="players-container">
+                <div class="column">
+                    <label for="player1_name">Enter Player 1 Name:</label>
+                    <input type="text" id="player1_name" name="player1_name" placeholder="e.g., Stephen Curry" required>
+                </div>
+                <div class="column">
+                    <label for="player2_name">Enter Player 2 Name:</label>
+                    <input type="text" id="player2_name" name="player2_name" placeholder="e.g., Kevin Durant" required>
+                </div>
             </div>
-            <div class="column">
-                <label for="player2_name">Enter Player 2 Name:</label>
-                <input type="text" id="player2_name" name="player2_name" placeholder="e.g., Kevin Durant" required>
+            <div class="button-group">
+                <button type="button" onclick="addPlayerInput()">Add Another Player</button>
+                <button type="submit">Compare</button>
             </div>
-            <button type="submit">Compare</button>
         </form>
     </div>
     <footer>

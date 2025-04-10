@@ -126,25 +126,36 @@ def compare():
 
 @app.route('/compare_players', methods=['POST'])
 def run_compare():
-    player1_name = request.form['player1_name']
-    player2_name = request.form['player2_name']
-    player1_dict = players.find_players_by_full_name(player1_name)
-    if not player1_dict:
-        return render_template('error.html', error_message=f"Player 1 '{player1_name}' not found.")
-    player1_id = player1_dict[0]['id']
-    player2_dict = players.find_players_by_full_name(player2_name)
-    if not player2_dict:
-        return render_template('error.html', error_message=f"Player 2 '{player2_name}' not found.")
-    player2_id = player2_dict[0]['id']
-    p1_stats, _, _ = cs.get_player_career_stats(player1_id)
-    p2_stats, _, _ = cs.get_player_career_stats(player2_id)
+    # Get all player entries from form
+    players_data = {}
+    max_players = 5
     
-    p1_seasons = p1_stats["SEASON_ID"].tolist()
-    p2_seasons = p2_stats["SEASON_ID"].tolist()
-    p1_columns = p1_stats.columns.tolist()
-    p2_columns = p2_stats.columns.tolist()
+    # Collect all player data from the form
+    for i in range(1, max_players + 1):
+        player_name_key = f'player{i}_name'
+        if player_name_key in request.form and request.form[player_name_key].strip():
+            player_name = request.form[player_name_key].strip()
+            player_dict = players.find_players_by_full_name(player_name)
+            
+            if not player_dict:
+                return render_template('error.html', error_message=f"Player {i} '{player_name}' not found.")
+            
+            player_id = player_dict[0]['id']
+            player_stats, _, _ = cs.get_player_career_stats(player_id)
+            
+            players_data[str(i)] = {
+                'id': player_id,
+                'name': player_name,
+                'stats': player_stats.to_dict(orient="records"),
+                'seasons': player_stats["SEASON_ID"].tolist(),
+                'columns': player_stats.columns.tolist()
+            }
     
-    return render_template('compare_result.html', player1=p1_stats.to_dict(orient="records"), player2=p2_stats.to_dict(orient="records"), p1_seasons=p1_seasons, p2_seasons=p2_seasons, p1_columns=p1_columns, p2_columns=p2_columns, player1_id=player1_id, player2_id=player2_id, player1_name=player1_name, player2_name=player2_name)
+    if len(players_data) < 2:
+        return render_template('error.html', error_message="Please enter at least 2 players to compare.")
+    
+    return render_template('compare_result.html', players=players_data)
+
 if __name__ == '__main__':
     app.run(debug=True)
     # pass

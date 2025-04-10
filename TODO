@@ -1,7 +1,20 @@
+General: 
 Improve UI
 Improve pipeline integration
-Add multiple players (max 4) for compare feature
-Percentage Archetype Match
+Improve Security before shipping (documented)
+Cleanup Commits
 
-Improve security before shipping (documented)
-Cleanup commits
+Compare:
+Table of Player's Horizontal (if screen size)
+Line Graph to Compare Player's for Specific Stat
+
+Archetype:
+List 1, 2, 3 w/ Percentage Archetype Match
+Line Graphs Player Stats through Seasons
+Improve Archetype Classification Algo
+
+Trade Analyzer: 
+Evaluate potential trades by analyzing how the involved players' archetypes and stats impact the teams.
+
+
+
