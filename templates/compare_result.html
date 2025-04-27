@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="/static/style.css">
     <!-- Add Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Add Chart.js Zoom plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.0"></script>
     <script>
         function updateStats(playerId, seasonId) {
             const stats = JSON.parse(document.getElementById(`player${playerId}_stats`).textContent);
@@ -144,6 +147,25 @@
                         tooltip: {
                             mode: 'index',
                             intersect: false,
+                        },
+                        zoom: {
+                            zoom: {
+                                wheel: {
+                                    enabled: true,
+                                    speed: 0.1,
+                                },
+                                pinch: {
+                                    enabled: true
+                                },
+                                mode: 'xy',
+                            },
+                            pan: {
+                                enabled: true,
+                                mode: 'xy',
+                            },
+                            limits: {
+                                y: {min: 'original', max: 'original', minRange: 1}
+                            }
                         }
                     },
                     scales: {
@@ -185,7 +207,6 @@
         <h1>Compare Players</h1>
         <span id="player_count" style="display: none;">{{ players|length }}</span>
         <div class="chart-container">
-            <h2>Career Stats Comparison</h2>
             <div class="chart-controls">
                 <label for="statCategorySelect">Select Stat Category to Compare:</label>
                 <select id="statCategorySelect" onchange="updateChart(this.value)">
