@@ -129,21 +129,6 @@ a.button-link:hover {
     background-color: #e9ecef;
 }
 
-/* Stats Container */
-.stats-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 40px;
-}
-
-.stats-column {
-    width: 48%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-}
-
 /* Player Image */
 .player-image {
     order: -1;
@@ -238,8 +223,62 @@ footer a:hover {
   }
 
 /* Multi-Player Comparison Styles */
+
+/* Define the main container for the comparison page */
 #players-container {
-    max-width: calc(100vw - 300px);
+    max-width: calc(100vw - 200px); /* Adjust margin as needed */
+    margin: 50px auto;
+    padding: 0px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Container for the player columns */
+#players-container .stats-container {
+    display: flex;          /* Arrange columns horizontally */
+    flex-wrap: nowrap;      /* Keep columns in a single row */
+    justify-content: center;/* Center columns if space allows */
+    width: max-content;     /* Container width based on content */
+    max-width: 100%;        /* Prevent overflow from parent */
+    margin: 20px auto;      /* Center the container itself */
+    gap: 20px;              /* Space between columns */
+    padding-bottom: 15px;   /* Space for potential scrollbar */
+    overflow-x: auto;       /* Enable horizontal scroll if needed */
+}
+
+/* Individual player column styling */
+#players-container .stats-column {
+    min-width: 300px;       /* Minimum width for readability */
+    max-width: 400px;       /* Optional maximum width */
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0; /* Prevent columns from shrinking */
+}
+
+@media (max-width: 768px) {
+    .stats-column {
+        flex: 100%;
+    }
+}
+.chart-container {
+    width: 100%;
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.chart-controls {
+    margin-bottom: 15px;
+    text-align: center;
 }
 
 .button-group {
@@ -261,17 +300,4 @@ footer a:hover {
 
 .remove-btn:hover {
     background-color: #c82333;
-}
-
-/* Responsive adjustments for multiple players */
-@media (max-width: 1200px) {
-    .stats-container {
-        flex-direction: column;
-        align-items: center;
-    }
-    
-    .stats-column {
-        width: 90%;
-        max-width: 600px;
-    }
 }

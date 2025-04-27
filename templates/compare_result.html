@@ -5,42 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
-    <style>
-        .stats-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 15px;
-        }
-        .stats-column {
-            flex: 1;
-            min-width: 250px;
-            max-width: 400px;
-            margin: 10px;
-            padding: 15px;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        @media (max-width: 768px) {
-            .stats-column {
-                flex: 100%;
-            }
-        }
-        .chart-container {
-            width: 100%;
-            max-width: 900px;
-            margin: 20px auto;
-            padding: 15px;
-            background-color: #f5f5f5;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-        .chart-controls {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-    </style>
     <!-- Add Chart.js library -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -208,11 +172,13 @@
             if (dropdown && dropdown.options.length > 0) {
                 updateChart(dropdown.options[0].value);
             }
+            // Initial highlight after page load and potential initial stats update
+            highlightComparison(); 
         });
     </script>
 </head>
 <body>
-    <div class="container", id="players-container">
+    <div class="container" id="players-container">
         <a href="{{ url_for('select') }}">
             <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO_2.png') }}" alt="NBA Insights Logo" class="top-right-logo">
         </a>
@@ -252,7 +218,9 @@
                         <option value="{{ season }}">{{ season }}</option>
                     {% endfor %}
                 </select>
-                <div id="player{{ player_id }}_season_stats"></div>
+                <div id="player{{ player_id }}_season_stats">
+                    <p>Select a season to view stats.</p> 
+                </div>
                 <pre id="player{{ player_id }}_stats" style="display:none;">{{ player_data.stats | tojson }}</pre>
                 <pre id="player{{ player_id }}_columns" style="display:none;">{{ player_data.columns | tojson }}</pre>
                 <div class="player-image">
