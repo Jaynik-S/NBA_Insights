@@ -25,6 +25,11 @@
             `;
             
             playerContainer.appendChild(playerDiv);
+            
+            // Hide the "Add Another Player" button if we've reached 5 players
+            if (playerContainer.children.length >= 5) {
+                document.getElementById('addPlayerButton').style.display = 'none';
+            }
         }
         
         function removePlayerInput(button) {
@@ -46,6 +51,9 @@
                     labels[0].textContent = `Enter Player ${playerNum} Name:`;
                 }
             }
+            
+            // Show the "Add Another Player" button again
+            document.getElementById('addPlayerButton').style.display = 'inline-block';
         }
     </script>
 </head>
@@ -67,7 +75,7 @@
                 </div>
             </div>
             <div class="button-group">
-                <button type="button" onclick="addPlayerInput()">Add Another Player</button>
+                <button type="button" id="addPlayerButton" onclick="addPlayerInput()">Add Another Player</button>
                 <button type="submit">Compare</button>
             </div>
         </form>
