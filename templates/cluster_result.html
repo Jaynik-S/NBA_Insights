@@ -30,7 +30,7 @@
         {% if result.error %}
             <p class="error">{{ result.error }}</p>
         {% else %}
-            <p><strong>Name:</strong> {{ result.name }}</p>
+            <p><strong>Name:</strong> {{ result.name | title }}</p>
             <p><strong>Archetypes:</strong> {{ result.archetypes | join(', ') }}</p>
             <div class="player-image">
                 <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player_id }}.png" alt="{{ player_id }}">

@@ -27,7 +27,22 @@
                 flex: 100%;
             }
         }
+        .chart-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .chart-controls {
+            margin-bottom: 15px;
+            text-align: center;
+        }
     </style>
+    <!-- Add Chart.js library -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
         function updateStats(playerId, seasonId) {
             const stats = JSON.parse(document.getElementById(`player${playerId}_stats`).textContent);
@@ -51,8 +66,14 @@
             const firstPlayerColumns = JSON.parse(document.getElementById('player1_columns').textContent);
             const playerCount = parseInt(document.getElementById('player_count').textContent);
             
+            // Columns to exclude from highlighting
+            const excludeColumns = ['SEASON_ID', 'TEAM_ABBREVIATION', 'PLAYER_AGE'];
+            
             // For each column/stat
             firstPlayerColumns.forEach(column => {
+                // Skip excluded columns
+                if (excludeColumns.includes(column)) return;
+                
                 // Get all cells for this column across all players
                 const cellsByColumn = [];
                 for (let i = 1; i <= playerCount; i++) {
@@ -79,19 +100,152 @@
                 }
             });
         }
+
+        // Function to create and update the line chart
+        function updateChart(statCategory) {
+            // Get all player data
+            const playerCount = parseInt(document.getElementById('player_count').textContent);
+            const players = {};
+            const allSeasons = new Set();
+            
+            // Extract data for all players and gather all seasons
+            for (let i = 1; i <= playerCount; i++) {
+                const stats = JSON.parse(document.getElementById(`player${i}_stats`).textContent);
+                const playerName = document.querySelector(`.stats-column:nth-child(${i}) h2`).textContent.trim();
+                players[i] = { 
+                    name: playerName, 
+                    stats: stats,
+                    seasonData: {}
+                };
+                
+                // Extract all seasons for this player
+                stats.forEach(season => {
+                    const seasonYear = season.SEASON_ID;
+                    allSeasons.add(seasonYear);
+                    players[i].seasonData[seasonYear] = season[statCategory] || 0;
+                });
+            }
+            
+            // Convert to array and sort seasons chronologically
+            const sortedSeasons = Array.from(allSeasons).sort();
+            
+            // Create dataset for chart
+            const datasets = [];
+            const colors = ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF'];
+            
+            Object.keys(players).forEach((playerId, index) => {
+                const player = players[playerId];
+                const data = sortedSeasons.map(season => 
+                    player.seasonData[season] !== undefined ? player.seasonData[season] : 0
+                );
+                
+                datasets.push({
+                    label: player.name,
+                    data: data,
+                    borderColor: colors[index % colors.length],
+                    backgroundColor: 'transparent',
+                    pointBackgroundColor: colors[index % colors.length],
+                    tension: 0.1
+                });
+            });
+            
+            // Get the canvas element
+            const ctx = document.getElementById('statsChart').getContext('2d');
+            
+            // Destroy previous chart if it exists
+            if (window.statsLineChart) {
+                window.statsLineChart.destroy();
+            }
+            
+            // Create the chart
+            window.statsLineChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: sortedSeasons,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `${statCategory} Comparison`,
+                            font: {
+                                size: 16
+                            }
+                        },
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: statCategory
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Season'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Initialize chart with default stat category when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get first valid category from dropdown
+            const dropdown = document.getElementById('statCategorySelect');
+            if (dropdown && dropdown.options.length > 0) {
+                updateChart(dropdown.options[0].value);
+            }
+        });
     </script>
 </head>
 <body>
-    <div class="container">
+    <div class="container", id="players-container">
         <a href="{{ url_for('select') }}">
             <img src="{{ url_for('static', filename='NBA_INSIGHTS_LOGO_2.png') }}" alt="NBA Insights Logo" class="top-right-logo">
         </a>
         <h1>Compare Players</h1>
         <span id="player_count" style="display: none;">{{ players|length }}</span>
+        <div class="chart-container">
+            <h2>Career Stats Comparison</h2>
+            <div class="chart-controls">
+                <label for="statCategorySelect">Select Stat Category to Compare:</label>
+                <select id="statCategorySelect" onchange="updateChart(this.value)">
+                    <option value="PTS_PG">Points Per Game (PTS_PER_GAME)</option>
+                    <option value="REB_PG">Rebounds Per Game (REB_PER_GAME)</option>
+                    <option value="AST_PG">Assists Per Game (AST_PER_GAME)</option>
+                    <option value="STL_PG">Steals Per Game (STL_PER_GAME)</option>
+                    <option value="BLK_PG">Blocks Per Game (BLK_PER_GAME)</option>
+                    <option value="MIN_PG">Minutes Per Game (MIN_PER_GAME)</option>
+                    <option value="OREB_PG">Offensive Rebounds Per Game (OREB_PG)</option>
+                    <option value="DREB_PG">Defensive Rebounds Per Game (DREB_PG)</option>
+                    <option value="PF_PG">Personal Fouls Per Game (PF_PG)</option>
+                    <option value="FTA_PG">Free Throw Attempts Per Game (FTA_PG)</option>
+                    <option value="FGA_PG">Field Goal Attempts Per Game (FGA_PG)</option>
+                    <option value="FGM_PG">Field Goals Made Per Game (FGM_PG)</option>
+                    <option value="FG3A_PG">3-Point Attempts Per Game (FG3A_PG)</option>
+                    <option value="FG3M_PG">3-Points Made Per Game (FG3M_PG)</option>
+                    <option value="FTM_PG">Free Throws Made Per Game (FTM_PG)</option>
+                </select>
+            </div>
+            <canvas id="statsChart"></canvas>
+        </div>
         <div class="stats-container">
             {% for player_id, player_data in players.items() %}
             <div class="stats-column">
-                <h2>{{ player_data.name }}</h2>
+                <h2>{{ player_data.name | title }}</h2>
                 <select onchange="updateStats('{{ player_id }}', this.value)">
                     <option value="">Select Season</option>
                     {% for season in player_data.seasons %}

@@ -225,12 +225,23 @@ footer a:hover {
 
 /* Highlighted Cell */
 .highlight {
-    background-color: #d4edda;
+    background-color: rgba(255, 126, 54, 0.15) !important;
     font-weight: bold;
-    border: 2px solid #28a745;
-}
+    position: relative;
+  }
+  
+  .highlight::after {
+    content: "★";
+    position: absolute;
+    right: 10px;
+    color: var(--secondary);
+  }
 
 /* Multi-Player Comparison Styles */
+#players-container {
+    max-width: calc(100vw - 300px);
+}
+
 .button-group {
     display: flex;
     justify-content: space-between;
