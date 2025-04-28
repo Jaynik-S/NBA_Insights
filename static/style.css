@@ -155,6 +155,33 @@ a.button-link:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.visualization-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+#cluster-visualization {
+    max-width: 100%;
+    cursor: move; /* Indicate it's draggable */
+    transform-origin: 0 0;
+}
+
+.zoom-controls {
+    margin: 10px 0;
+}
+
+#zoom-instructions {
+    font-size: 0.8em;
+    color: #666;
+    margin-top: 5px;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
 /* Player Stats */
 .player-stats {
     margin-top: 40px;

@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Player Archetype Result</title>
     <link rel="stylesheet" href="/static/style.css">
+    <!-- Add panzoom library for image zooming -->
+    <script src="https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js"></script>
     <script>
         function updateStats(seasonId) {
             const stats = JSON.parse(document.getElementById('player_stats').textContent);
@@ -19,6 +21,35 @@
                 }
             });
         }
+        
+        // Initialize panzoom functionality when document is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const elem = document.getElementById('cluster-visualization');
+            if (elem) {
+                const panzoomInstance = panzoom(elem, {
+                    maxZoom: 10,
+                    minZoom: 1, // Changed from 0.5 to 1 to prevent zooming out smaller than default
+                    bounds: true,
+                    boundsPadding: 0.1
+                });
+                
+                // Add reset button functionality with correct methods
+                document.getElementById('reset-zoom').addEventListener('click', function() {
+                    // Reset position to (0,0) and zoom level to 1 (original scale)
+                    panzoomInstance.moveTo(0, 0);
+                    panzoomInstance.zoomAbs(0, 0, 1);
+                });
+                
+                // Information about panning
+                elem.addEventListener('mouseenter', function() {
+                    document.getElementById('zoom-instructions').style.opacity = "1";
+                });
+                
+                elem.addEventListener('mouseleave', function() {
+                    document.getElementById('zoom-instructions').style.opacity = "0.5";
+                });
+            }
+        });
     </script>
 </head>
 <body>
@@ -43,7 +74,13 @@
             <div class="graph">
                 <h2>Visualization</h2>
                 {% if result.plot_base64 %}
-                    <img src="data:image/png;base64,{{ result.plot_base64 }}" alt="Visualization">
+                    <div class="zoom-controls">
+                        <button id="reset-zoom">Reset Zoom</button>
+                        <div id="zoom-instructions">Use mouse wheel to zoom, click and drag to pan</div>
+                    </div>
+                    <div class="visualization-container">
+                        <img id="cluster-visualization" src="data:image/png;base64,{{ result.plot_base64 }}" alt="Visualization">
+                    </div>
                 {% else %}
                     <p>No visualization available.</p>
                 {% endif %}
