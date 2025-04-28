@@ -1,0 +1,1610 @@
+[
+    {
+        "id": 2544,
+        "name": "LeBron James",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201142,
+        "name": "Kevin Durant",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201939,
+        "name": "Stephen Curry",
+        "primary_archetype": "Sharpshooting Phenoms",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Sharpshooting Phenoms",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203507,
+        "name": "Giannis Antetokounmpo",
+        "primary_archetype": "Dominant Freak",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Freak",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203999,
+        "name": "Nikola Joki\u0107",
+        "primary_archetype": "Maestro Big",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Maestro Big",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203954,
+        "name": "Joel Embiid",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629029,
+        "name": "Luka Don\u010di\u0107",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201935,
+        "name": "James Harden",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203081,
+        "name": "Damian Lillard",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628369,
+        "name": "Jayson Tatum",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626164,
+        "name": "Devin Booker",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202695,
+        "name": "Kawhi Leonard",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202331,
+        "name": "Paul George",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202681,
+        "name": "Kyrie Irving",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202710,
+        "name": "Jimmy Butler",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203076,
+        "name": "Anthony Davis",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 101108,
+        "name": "Chris Paul",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629027,
+        "name": "Trae Young",
+        "primary_archetype": "Sharpshooting Phenoms",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Sharpshooting Phenoms",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628378,
+        "name": "Donovan Mitchell",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203078,
+        "name": "Bradley Beal",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629630,
+        "name": "Ja Morant",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201566,
+        "name": "Russell Westbrook",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626157,
+        "name": "Karl-Anthony Towns",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203110,
+        "name": "Draymond Green",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628389,
+        "name": "Bam Adebayo",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203497,
+        "name": "Rudy Gobert",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627732,
+        "name": "Ben Simmons",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202691,
+        "name": "Klay Thompson",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203952,
+        "name": "Andrew Wiggins",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627783,
+        "name": "Pascal Siakam",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201942,
+        "name": "DeMar DeRozan",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203897,
+        "name": "Zach LaVine",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627742,
+        "name": "Brandon Ingram",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627759,
+        "name": "Jaylen Brown",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630163,
+        "name": "LaMelo Ball",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630162,
+        "name": "Anthony Edwards",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627734,
+        "name": "Domantas Sabonis",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628368,
+        "name": "De'Aaron Fox",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203468,
+        "name": "CJ McCollum",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203114,
+        "name": "Khris Middleton",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201950,
+        "name": "Jrue Holiday",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628969,
+        "name": "Mikal Bridges",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203500,
+        "name": "Steven Adams",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203991,
+        "name": "Clint Capela",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626167,
+        "name": "Myles Turner",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627832,
+        "name": "Fred VanVleet",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 200768,
+        "name": "Kyle Lowry",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202330,
+        "name": "Gordon Hayward",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203944,
+        "name": "Julius Randle",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628983,
+        "name": "Shai Gilgeous-Alexander",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629636,
+        "name": "Darius Garland",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630596,
+        "name": "Evan Mobley",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630595,
+        "name": "Cade Cunningham",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630169,
+        "name": "Tyrese Haliburton",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629628,
+        "name": "RJ Barrett",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628970,
+        "name": "Miles Bridges",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626179,
+        "name": "Terry Rozier",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201565,
+        "name": "Derrick Rose",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203506,
+        "name": "Victor Oladipo",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627763,
+        "name": "Malcolm Brogdon",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201143,
+        "name": "Al Horford",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201572,
+        "name": "Brook Lopez",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629011,
+        "name": "Mitchell Robinson",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627741,
+        "name": "Buddy Hield",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629018,
+        "name": "Gary Trent Jr.",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629008,
+        "name": "Michael Porter Jr.",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626174,
+        "name": "Christian Wood",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203915,
+        "name": "Spencer Dinwiddie",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627747,
+        "name": "Caris LeVert",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201569,
+        "name": "Eric Gordon",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628401,
+        "name": "Derrick White",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628381,
+        "name": "John Collins",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202696,
+        "name": "Nikola Vu\u010devi\u0107",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203932,
+        "name": "Aaron Gordon",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202711,
+        "name": "Bojan Bogdanovi\u0107",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203935,
+        "name": "Marcus Smart",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628374,
+        "name": "Lauri Markkanen",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203496,
+        "name": "Robert Covington",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626181,
+        "name": "Norman Powell",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201586,
+        "name": "Serge Ibaka",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628386,
+        "name": "Jarrett Allen",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203552,
+        "name": "Seth Curry",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 204060,
+        "name": "Joe Ingles",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203501,
+        "name": "Tim Hardaway Jr.",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202704,
+        "name": "Reggie Jackson",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203084,
+        "name": "Harrison Barnes",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628991,
+        "name": "Jaren Jackson Jr.",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203992,
+        "name": "Bogdan Bogdanovi\u0107",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629060,
+        "name": "Rui Hachimura",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628398,
+        "name": "Kyle Kuzma",
+        "primary_archetype": "Hybrid Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Hybrid Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203903,
+        "name": "Jordan Clarkson",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626158,
+        "name": "Richaun Holmes",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1626156,
+        "name": "D'Angelo Russell",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627749,
+        "name": "Dejounte Murray",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629640,
+        "name": "Keldon Johnson",
+        "primary_archetype": "Dynamic Two-Way Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dynamic Two-Way Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628366,
+        "name": "Lonzo Ball",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629632,
+        "name": "Coby White",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627936,
+        "name": "Alex Caruso",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630170,
+        "name": "Devin Vassell",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630164,
+        "name": "James Wiseman",
+        "primary_archetype": "Raw Athletic Bigs",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Raw Athletic Bigs",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629028,
+        "name": "Deandre Ayton",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630532,
+        "name": "Franz Wagner",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629673,
+        "name": "Jordan Poole",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629645,
+        "name": "Kevin Porter Jr.",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201976,
+        "name": "Patrick Beverley",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203926,
+        "name": "Doug McDermott",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 202722,
+        "name": "Davis Bertans",
+        "primary_archetype": "Veteran Utility Forwards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Veteran Utility Forwards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 203482,
+        "name": "Kelly Olynyk",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629655,
+        "name": "Daniel Gafford",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629629,
+        "name": "Cam Reddish",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630530,
+        "name": "Trey Murphy III",
+        "primary_archetype": "High-Volume Scoring Guards",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Volume Scoring Guards",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 201567,
+        "name": "Kevin Love",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629631,
+        "name": "De'Andre Hunter",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629661,
+        "name": "Cameron Johnson",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628365,
+        "name": "Markelle Fultz",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630175,
+        "name": "Cole Anthony",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630591,
+        "name": "Jalen Suggs",
+        "primary_archetype": "Elite Wing Scorers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Elite Wing Scorers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628384,
+        "name": "OG Anunoby",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630567,
+        "name": "Scottie Barnes",
+        "primary_archetype": "Dominant Interior Forces",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Dominant Interior Forces",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630173,
+        "name": "Precious Achiuwa",
+        "primary_archetype": "Defensive Anchor Centers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Defensive Anchor Centers",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630167,
+        "name": "Obi Toppin",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630178,
+        "name": "Tyrese Maxey",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1631095,
+        "name": "Jabari Smith Jr.",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630224,
+        "name": "Jalen Green",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630581,
+        "name": "Josh Giddey",
+        "primary_archetype": "Hybrid Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Hybrid Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629652,
+        "name": "Luguentz Dort",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629026,
+        "name": "Kenrich Williams",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630559,
+        "name": "Austin Reaves",
+        "primary_archetype": "Creative Shot Creators",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Creative Shot Creators",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1630538,
+        "name": "Bones Hyland",
+        "primary_archetype": "Versatile Role Players",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Versatile Role Players",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1627750,
+        "name": "Jamal Murray",
+        "primary_archetype": "All-Around Superstars",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "All-Around Superstars",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1631107,
+        "name": "Nikola Jovi\u0107",
+        "primary_archetype": "3-and-D Wings",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "3-and-D Wings",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628997,
+        "name": "Caleb Martin",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1628998,
+        "name": "Cody Martin",
+        "primary_archetype": "Savvy Floor Generals",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "Savvy Floor Generals",
+                1.0
+            ]
+        ]
+    },
+    {
+        "id": 1629684,
+        "name": "Grant Williams",
+        "primary_archetype": "High-Energy Hustlers",
+        "primary_probability": 1.0,
+        "archetypes": [
+            [
+                "High-Energy Hustlers",
+                1.0
+            ]
+        ]
+    }
+]

@@ -31,7 +31,12 @@
             <p class="error">{{ result.error }}</p>
         {% else %}
             <p><strong>Name:</strong> {{ result.name | title }}</p>
-            <p><strong>Archetypes:</strong> {{ result.archetypes | join(', ') }}</p>
+            <p><strong>Archetypes:</strong></p>
+                <ul>
+                {% for archetype in result.archetypes %}
+                    <li>{{ archetype }}</li>
+                {% endfor %}
+                </ul>
             <div class="player-image">
                 <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player_id }}.png" alt="{{ player_id }}">
             </div>

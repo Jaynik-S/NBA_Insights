@@ -1,25 +1,24 @@
 from flask import Flask, render_template, request, redirect, url_for
 from nba_api.stats.static import players
-from centroid_clustering import single_player_coor
+from centroid_clustering import single_player_archetypes
 import json
-# import os
-from math import dist
 import matplotlib
 matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
 import career_stats as cs
 import io
 import base64
+import os
+import numpy as np
 
 app = Flask(__name__)
 
 # Configurations
-OUTPUT_FILE = "data/archetype_centroids.json"
-THRESHOLD_DISTANCE = 6.8
-MAX_ARCHETYPES = 3
+CENTROIDS_FILE = "data/archetype_centroids.json"
+ARCHETYPE_MAPPING_FILE = "data/archetype_mapping.json"
 STATIC_DIR = "static"
 
-# Helper function to get player archetypes
+# Helper function to get player archetypes using GMM
 def get_player_archetypes(player_name):
     player_dict = players.find_players_by_full_name(player_name)
 
@@ -27,44 +26,73 @@ def get_player_archetypes(player_name):
         return {"error": f"Player '{player_name}' not found."}
 
     player_id = player_dict[0]['id']
-    player_coordinates = single_player_coor(player_id)
+    
+    # Get archetype probabilities using the new GMM-based function
+    result = single_player_archetypes(player_id)
+    
+    if not result:
+        return {"error": f"Could not determine archetypes for '{player_name}'."}
+    
+    # Check if centroids file exists for visualization
+    if not os.path.exists(CENTROIDS_FILE):
+        return {"error": f"'{CENTROIDS_FILE}' not found. Please run centroid_clustering.py first."}
 
-    # if not player_coordinates:
-    #     return {"error": f"Could not determine coordinates for '{player_name}'."}
-
-    # if not os.path.exists(OUTPUT_FILE):
-    #     return {"error": f"'{OUTPUT_FILE}' not found. Please run centroid_clustering.py first."}
-
-    with open(OUTPUT_FILE, "r") as json_file:
+    # Extract player coordinates and top archetypes (now sorted by distance)
+    player_coordinates = result['coordinates']
+    closest_archetypes = result['archetypes']
+    closest_archetype_names = [arch['name'] for arch in closest_archetypes]
+    
+    # Debug information
+    print(f"Player: {player_name}")
+    for arch in closest_archetypes:
+        print(f"  {arch['name']}: distance={arch['distance']:.2f}, probability={arch['probability']:.2%}")
+    
+    # Load centroid data for plotting
+    with open(CENTROIDS_FILE, "r") as json_file:
         archetype_centroid_dict = json.load(json_file)
-
-    archetype_distances = {}
-    for archetype, centroid in archetype_centroid_dict.items():
-        archetype_distances[archetype] = dist(centroid, player_coordinates)
-
-    closest_archetype = min(archetype_distances, key=archetype_distances.get)
-    sorted_archetypes = sorted(archetype_distances.items(), key=lambda x: x[1])
-    player_archetypes = [arch for arch, distance in sorted_archetypes[:MAX_ARCHETYPES] if distance <= THRESHOLD_DISTANCE]
-
-    if closest_archetype not in player_archetypes:
-        if len(player_archetypes) >= MAX_ARCHETYPES:
-            player_archetypes.pop()
-        player_archetypes.insert(0, closest_archetype)
-
-    # Sort centroids by distance and select the closest 5
-    sorted_centroids = sorted(archetype_centroid_dict.items(), key=lambda x: dist(x[1], player_coordinates))[:5]
 
     # Generate and encode plot as base64
     img_buffer = io.BytesIO()
     plt.figure(figsize=(12, 8))
-    for archetype, centroid in sorted_centroids:
-        plt.scatter(centroid[0], centroid[1], c='red', marker='x', s=200, label=archetype)
-        plt.text(centroid[0] + 0.1, centroid[1], archetype, fontsize=9)
+    
+    # Define colors for the top 3 archetypes
+    colors = ['#FF5733', '#33A8FF', '#45FF33']  # Red, Blue, Green
+    
+    # First plot all centroids in gray (low alpha)
+    for archetype, centroid in archetype_centroid_dict.items():
+        if archetype not in closest_archetype_names:
+            plt.scatter(centroid[0], centroid[1], c='gray', marker='x', s=100, alpha=0.3)
+            plt.text(centroid[0] + 0.1, centroid[1], archetype, fontsize=8, alpha=0.3)
+    
+    # Plot the top 3 closest archetypes with distinct colors
+    for i, archetype in enumerate(closest_archetypes):
+        archetype_name = archetype['name']
+        distance = archetype['distance']
+        probability = archetype['probability']
+        
+        if archetype_name in archetype_centroid_dict:
+            centroid = archetype_centroid_dict[archetype_name]
+            color = colors[i]
+            
+            # Format label with distance and probability
+            label = f"{archetype_name} (dist: {distance:.2f}"
+            
+            # Plot centroid with color
+            plt.scatter(centroid[0], centroid[1], c=color, marker='x', s=200, label=label)
+            plt.text(centroid[0] + 0.1, centroid[1], archetype_name, fontsize=10, weight='bold', color=color)
+            
+            # Draw line connecting player to archetype
+            plt.plot([player_coordinates[0], centroid[0]], 
+                    [player_coordinates[1], centroid[1]], 
+                    c=color, alpha=0.8, 
+                    linewidth=4.0 - i, # Thicker lines for closer archetypes
+                    linestyle='-')
 
-    plt.scatter(player_coordinates[0], player_coordinates[1], c='blue', marker='o', s=100, label=f"{player_name}'s location")
-    plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=10, color='blue')
+    # Plot player location
+    plt.scatter(player_coordinates[0], player_coordinates[1], c='black', marker='o', s=120, label=f"{player_name}'s location")
+    plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=11, color='black', weight='bold')
 
-    plt.title(f"Archetype Visualization for {player_name.title()}", fontsize=16)
+    plt.title(f"Top 3 Closest Archetypes for {player_name.title()}", fontsize=16)
     plt.xlabel("Principal Component 1", fontsize=14)
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.legend(loc='best')
@@ -75,7 +103,18 @@ def get_player_archetypes(player_name):
     plot_base64 = base64.b64encode(img_buffer.read()).decode('utf-8')
     img_buffer.close()
 
-    return {"name": player_name, "archetypes": player_archetypes, "plot_base64": plot_base64}
+    # Format archetypes with distances for display
+    formatted_archetypes = []
+    for i in range(len(closest_archetypes)):
+        formatted_archetypes.append(
+            f"{i+1}: {closest_archetypes[i]['name']} (distance: {closest_archetypes[i]['distance']:.2f})"
+        )
+
+    return {
+        "name": player_name, 
+        "archetypes": formatted_archetypes, 
+        "plot_base64": plot_base64
+    }
 
 # Routes
 @app.route('/')
@@ -158,4 +197,3 @@ def run_compare():
 
 if __name__ == '__main__':
     app.run(debug=True)
-    # pass

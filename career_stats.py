@@ -184,12 +184,13 @@ if __name__ == "__main__":
     print('\n\n------------------------------------------------------------------------------\n\n')
     print(overall_df.columns)
     print('\n\n------------------------------------------------------------------------------\n\n')
-    # print(shooting_df)
-    # print('\n\n------------------------------------------------------------------------------\n\n')
-    # print(finishing_df)
-    # print('\n\n------------------------------------------------------------------------------\n\n')
+    print(shooting_df)
+    print('\n\n------------------------------------------------------------------------------\n\n')
+    print(finishing_df)
+    print('\n\n------------------------------------------------------------------------------\n\n')
 
     
-    # combined_df = merged_df(overall_df, shooting_df, finishing_df)
-    # print(combined_df)
+    combined_df = merged_df(overall_df, shooting_df, finishing_df)
+    with pd.option_context('display.max_rows', None, 'display.max_columns', None):
+        print(combined_df)
 
