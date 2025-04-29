@@ -118,6 +118,10 @@ def get_player_archetypes(player_name):
 
 # Routes
 @app.route('/')
+def home():
+    return render_template('index.html')
+
+@app.route('/select')
 def select():
     return render_template('select.html')
 
