@@ -1,5 +1,5 @@
 function addPlayerInput() {
-    const playerContainer = document.getElementById('players-container');
+    const playerContainer = document.getElementById('players-selection');
     const playerCount = playerContainer.children.length;
     
     if (playerCount >= 5) {

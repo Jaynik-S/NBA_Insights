@@ -274,7 +274,7 @@ footer a:hover {
     max-width: calc(100vw - 200px);
     min-width: 800px;
     margin: 50px auto;
-    padding: 0 50px ;
+    padding: 20px 50px ;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

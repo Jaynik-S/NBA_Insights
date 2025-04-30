@@ -9,7 +9,6 @@ import career_stats as cs
 import io
 import base64
 import os
-import numpy as np
 
 app = Flask(__name__)
 
