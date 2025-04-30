@@ -18,8 +18,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
-    border: 1px red solid;
-    margin-bottom: 100px;
+    margin-bottom: 100px !important;
 }
 
 /* Headings */
@@ -252,13 +251,23 @@ footer a:hover {
     color: var(--secondary);
   }
 
-/* Multi-Player Comparison Styles */
-
-/* Define the main container for the comparison page */
-#players-container {
-    max-width: calc(100vw - 200px); /* Adjust margin as needed */
+  #players-selection {
     margin: 50px auto;
     padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Multi-Player Comparison Styles */
+#players-container {
+    display: block;
+    width: fit-content;
+    max-width: calc(100vw - 200px);
+    min-width: 800px;
+    margin: 50px auto;
+    padding: 0 50px ;
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);

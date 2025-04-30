@@ -210,7 +210,7 @@ def visualize_clusters(X, cluster_probs, gmm, archetype_mapping):
     colors = plt.cm.viridis(np.linspace(0, 1, len(archetype_mapping)))
     
     # Plot points with cluster colors
-    plt.figure(figsize=(14, 10))
+    plt.figure(figsize=(16, 12))  # Increase figure size for better spacing
     
     # First plot all points with low alpha
     for i, label in enumerate(cluster_labels):
@@ -219,19 +219,25 @@ def visualize_clusters(X, cluster_probs, gmm, archetype_mapping):
     # Then plot centroids
     for i, mean in enumerate(gmm.means_):
         plt.scatter(mean[0], mean[1], color=colors[i], marker='X', 
-                   s=200, edgecolor='black', label=archetype_mapping[i])
+                   s=200, edgecolor='black')  # Remove inline labels
     
     plt.title("NBA Player Archetypes using Gaussian Mixture Model", fontsize=16)
     plt.xlabel("Principal Component 1", fontsize=14)
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
+    
+    # Create a separate legend with better positioning
+    plt.legend([plt.Line2D([0], [0], marker='X', color='w', markerfacecolor=colors[i], 
+                          markersize=15, markeredgecolor='black') for i in range(len(archetype_mapping))],
+              [archetype_mapping[i] for i in range(len(archetype_mapping))],
+              bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12)
+    
+    plt.tight_layout(rect=[0, 0, 0.85, 1])  # Adjust layout to make room for legend
     plt.savefig(os.path.join(OUTPUT_DIR, "cluster_visualization.png"))
     plt.close()
     
     # Create a second visualization showing probability distributions
-    plt.figure(figsize=(14, 10))
+    plt.figure(figsize=(16, 12))  # Increase figure size
     
     # For each point, draw lines to centroids with width proportional to probability
     for i in range(len(X)):
@@ -247,14 +253,20 @@ def visualize_clusters(X, cluster_probs, gmm, archetype_mapping):
     
     for i, mean in enumerate(gmm.means_):
         plt.scatter(mean[0], mean[1], color=colors[i], marker='X', 
-                   s=200, edgecolor='black', label=archetype_mapping[i])
+                   s=200, edgecolor='black')  # Remove inline labels
     
     plt.title("NBA Player Archetype Probability Visualization", fontsize=16)
     plt.xlabel("Principal Component 1", fontsize=14)
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.grid(True, alpha=0.3)
-    plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-    plt.tight_layout()
+    
+    # Create a separate legend with better positioning
+    plt.legend([plt.Line2D([0], [0], marker='X', color='w', markerfacecolor=colors[i], 
+                          markersize=15, markeredgecolor='black') for i in range(len(archetype_mapping))],
+              [archetype_mapping[i] for i in range(len(archetype_mapping))],
+              bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=12)
+    
+    plt.tight_layout(rect=[0, 0, 0.85, 1])  # Adjust layout to make room for legend
     plt.savefig(os.path.join(OUTPUT_DIR, "probability_visualization.png"))
     plt.close()
 
