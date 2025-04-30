@@ -1,6 +1,10 @@
 /* General Styling */
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap");
+
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: normal;
+    font-style: normal;
     background-color: #f8f9fa;
     color: #343a40;
     margin: 0;
@@ -225,17 +229,20 @@ footer {
 
 footer p {
     margin: 0;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 footer a {
-    color: #fff;
+    color: inherit; /* Inherit the parent's color instead of white */
     text-decoration: underline;
+    transition: color 0.3s ease; /* Add smooth transition effect */
 }
 
 footer a:hover {
-    color: #ccc;
+    color: #85E4A5; /* Green color on hover instead of ccc */
 }
+
+
 
 /* Highlighted Cell */
 .highlight {

@@ -1,14 +1,14 @@
 General: 
-Improve UI (FONTS, FOOTER, TL LOGO)
+Improve UI (ANIMATIONS, TL LOGO)
 Improve pipeline integration
 Improve Security before shipping (documented)
 Cleanup Commits
 SQLAlchemy visitor tracking
+LICENSE
 
 Compare:
 
 Archetype:
-Graph Labels Overlapping
 
 Trade Analyzer: 
 Evaluate potential trades by analyzing how the involved players' archetypes and stats impact the teams.
