@@ -6,6 +6,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background-image: url('img/bg.png');
 }
 
 /* Container */
@@ -17,6 +18,8 @@ body {
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
+    border: 1px red solid;
+    margin-bottom: 100px;
 }
 
 /* Headings */
@@ -58,11 +61,11 @@ input[type="text"], select {
 
 input[type="text"]:focus, select:focus {
     outline: none;
-    border-color: #FF834F;
+    border-color: #365ae1;
 }
 
 button {
-    background-color: #FF834F;
+    background-color: #365ae1;
     color: #fff;
     padding: 14px 28px; /* Increased padding */
     font-size: 20px; /* Increased font size */
@@ -74,7 +77,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #85E4A5;
     transform: translateY(-2px);
 }
 
@@ -83,7 +86,7 @@ a.button-link {
     display: inline-block;
     margin-top: 20px;
     padding: 12px 24px;
-    background-color: #FF834F;
+    background-color: #365ae1;
     color: #fff;
     text-decoration: none;
     border-radius: 8px;
@@ -211,8 +214,8 @@ a.button-link:hover {
 
 /* Footer Styling */
 footer {
-    background-color: #0056b3;
-    color: #fff;
+    background-color: #fff;
+    color: #365ae1;
     padding: 20px 0;
     text-align: center;
     position: fixed;
