@@ -1,33 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Select Program</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <!-- Add this to all HTML templates before closing body tag if not already present -->
-<script src="{{ url_for('static', filename='js/bootstrap.bundle-5.0.0.alpha-1-min.js') }}"></script>
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
-</head>
-    
-    <div class="container wow fadeIn" data-wow-delay="0.3s" style="">
-        <a href="{{ url_for('home') }}"> 
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="center-logo wow fadeInDown" data-wow-delay="0.5s">
-        </a>
-        <form action="/select_program" method="POST" class="wow fadeIn" data-wow-delay="0.7s">
-            <button type="submit" name="program" value="cluster" class="wow bounceIn" data-wow-delay="0.9s">Player Archetype Finder</button>
-            <button type="submit" name="program" value="compare" class="wow bounceIn" data-wow-delay="1.1s">Player Comparison</button>
-        </form>
-    </div>
-    <footer class="wow fadeInUp" data-wow-delay="1.3s">
-        <p style="">By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
-    </footer>
+{% extends "layout.html" %}
 
-    <!-- JS files -->
-    <script src="/static/js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-</body>
-</html>
+{% block title %}Select Program{% endblock %}
+
+{% block header %}{% endblock %}
+
+{% block content %}
+<div class="container wow fadeIn" data-wow-delay="0.3s">
+    <a href="{{ url_for('home') }}"> 
+        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="center-logo wow fadeInDown" data-wow-delay="0.5s">
+    </a>
+    <form action="/select_program" method="POST" class="wow fadeIn" data-wow-delay="0.7s">
+        <button type="submit" name="program" value="cluster" class="wow bounceIn" data-wow-delay="0.9s">Player Archetype Finder</button>
+        <button type="submit" name="program" value="compare" class="wow bounceIn" data-wow-delay="1.1s">Player Comparison</button>
+    </form>
+</div>
+{% endblock %}

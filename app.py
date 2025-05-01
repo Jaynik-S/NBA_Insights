@@ -119,15 +119,15 @@ def get_player_archetypes(player_name):
 # Routes
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', active_page='home')
 
 @app.route('/select')
 def select():
-    return render_template('select.html')
+    return render_template('select.html', active_page='select')
 
 @app.route('/custom')
 def custom():
-    return render_template('custom.html')
+    return render_template('custom.html', active_page='custom')
 
 @app.route('/select_program', methods=['POST'])
 def select_program():
@@ -142,7 +142,7 @@ def select_program():
 
 @app.route('/cluster')
 def cluster():
-    return render_template('cluster.html')
+    return render_template('cluster.html', active_page='cluster')
 
 @app.route('/get_archetype', methods=['POST'])
 def get_archetype():
@@ -169,7 +169,7 @@ def get_archetype():
 
 @app.route('/compare')
 def compare():
-    return render_template('compare.html')
+    return render_template('compare.html', active_page='compare')
 
 @app.route('/compare_players', methods=['POST'])
 def run_compare():
