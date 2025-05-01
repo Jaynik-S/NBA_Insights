@@ -6,8 +6,10 @@
     <title>Select Program</title>
     <link rel="stylesheet" href="/static/style.css">
     <link rel="stylesheet" href="/static/css/animate.css">
+    <!-- Add this to all HTML templates before closing body tag if not already present -->
+<script src="{{ url_for('static', filename='js/bootstrap.bundle-5.0.0.alpha-1-min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
-<body style="">
     
     <div class="container wow fadeIn" data-wow-delay="0.3s" style="">
         <a href="{{ url_for('home') }}"> 
