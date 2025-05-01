@@ -115,6 +115,7 @@ def get_player_archetypes(player_name):
         "plot_base64": plot_base64
     }
 
+
 # Routes
 @app.route('/')
 def home():
@@ -123,6 +124,10 @@ def home():
 @app.route('/select')
 def select():
     return render_template('select.html')
+
+@app.route('/custom')
+def custom():
+    return render_template('custom.html')
 
 @app.route('/select_program', methods=['POST'])
 def select_program():
