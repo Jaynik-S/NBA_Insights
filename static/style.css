@@ -201,17 +201,22 @@ a.button-link:hover {
     height: auto;
 }
 
-.top-right-logo {
-    position: absolute;
+.center-logo:hover {
+    transform: scale(1.05);
+}
+
+.tl {
+    position: relative;
     top: 20px;
     left: 20px;
     width: 250px;
     height: auto;
     cursor: pointer;
     transition: transform 0.2s ease;
+    margin-top: -20px;
 }
 
-.top-right-logo:hover {
+.tl:hover {
     transform: scale(1.05);
 }
 

@@ -1,5 +1,4 @@
 General: 
-Improve UI (ANIMATIONS, TL LOGO)
 Improve pipeline integration
 Improve Security before shipping (documented)
 Cleanup Commits
@@ -11,8 +10,8 @@ Compare:
 
 Archetype:
 
-Trade Analyzer: 
-Evaluate potential trades by analyzing how the involved players' archetypes and stats impact the teams.
+Custom Archetype: 
+...
 
 
 
