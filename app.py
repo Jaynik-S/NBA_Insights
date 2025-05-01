@@ -1,24 +1,35 @@
-from flask import Flask, render_template, request, redirect, url_for
 from nba_api.stats.static import players
 from centroid_clustering import single_player_archetypes
-import json
+import career_stats as cs
+from flask import Flask, render_template, request, redirect, url_for
 import matplotlib
 matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
-import career_stats as cs
+from dotenv import load_dotenv
+import logging
+import json
 import io
 import base64
 import os
 
 app = Flask(__name__)
 
-# Configurations
-CENTROIDS_FILE = "data/archetype_centroids.json"
-ARCHETYPE_MAPPING_FILE = "data/archetype_mapping.json"
-STATIC_DIR = "static"
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+load_dotenv()
+
+# Configuration for production deployment
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-production-secret-key-change-this')
+
+# Handle both local and production environments
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CENTROIDS_FILE = os.path.join(BASE_DIR, 'data', 'archetype_centroids.json')
+ARCHETYPE_MAPPING_FILE = os.path.join(BASE_DIR, 'data', 'archetype_mapping.json')
+
 
 # Helper function to get player archetypes using GMM
 def get_player_archetypes(player_name):
+    player_name = player_name.title()
     player_dict = players.find_players_by_full_name(player_name)
 
     if not player_dict:
@@ -74,7 +85,7 @@ def get_player_archetypes(player_name):
             color = colors[i]
             
             # Format label with distance and probability
-            label = f"{archetype_name} (dist: {distance:.2f}"
+            label = f"{archetype_name} (dist: {distance:.2f})"
             
             # Plot centroid with color
             plt.scatter(centroid[0], centroid[1], c=color, marker='x', s=200, label=label)
@@ -91,7 +102,7 @@ def get_player_archetypes(player_name):
     plt.scatter(player_coordinates[0], player_coordinates[1], c='black', marker='o', s=120, label=f"{player_name}'s location")
     plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=11, color='black', weight='bold')
 
-    plt.title(f"Top 3 Closest Archetypes for {player_name.title()}", fontsize=16)
+    plt.title(f"Top 3 Closest Archetypes for {player_name}", fontsize=16)
     plt.xlabel("Principal Component 1", fontsize=14)
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.legend(loc='best')
@@ -119,15 +130,15 @@ def get_player_archetypes(player_name):
 # Routes
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return render_template('index.html', active_page='home')
 
 @app.route('/select')
 def select():
-    return render_template('select.html')
+    return render_template('select.html', active_page='select')
 
 @app.route('/custom')
 def custom():
-    return render_template('custom.html')
+    return render_template('custom.html', active_page='custom')
 
 @app.route('/select_program', methods=['POST'])
 def select_program():
@@ -142,7 +153,7 @@ def select_program():
 
 @app.route('/cluster')
 def cluster():
-    return render_template('cluster.html')
+    return render_template('cluster.html', active_page='cluster')
 
 @app.route('/get_archetype', methods=['POST'])
 def get_archetype():
@@ -169,7 +180,7 @@ def get_archetype():
 
 @app.route('/compare')
 def compare():
-    return render_template('compare.html')
+    return render_template('compare.html', active_page='compare')
 
 @app.route('/compare_players', methods=['POST'])
 def run_compare():
@@ -203,5 +214,12 @@ def run_compare():
     
     return render_template('compare_result.html', players=players_data)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error_message="Page not found"), 404
+
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    debug = os.environ.get('FLASK_DEBUG', '').lower() in ('1', 'true', 'yes')
+    app.run(host='0.0.0.0', port=port, debug=debug)

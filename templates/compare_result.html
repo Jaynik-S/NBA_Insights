@@ -4,15 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Players</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <!-- Add Chart.js library -->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Add Chart.js Zoom plugin -->
     <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.0"></script>
-    <!-- Add our custom JavaScript -->
-    <script src="/static/js/compare_result.js"></script>
+    <script src="{{ url_for('static', filename='js/compare_result.js') }}"></script>
 </head>
 <body>
         <!-- Navbar Start -->
@@ -50,13 +48,12 @@
                                         <a class="page-scroll" href="{{ url_for('custom') }}">Custom</a>
                                     </li>
                                 </ul>
-                            </div> <!-- navbar collapse -->
-                        </nav> <!-- navbar -->
+                            </div>
+                        </nav> 
                     </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
+                </div> 
+            </div> 
         </header>
-        <!-- Navbar End -->
     
     <div class="container wow fadeIn" data-wow-delay="0.3s" id="players-container">
         <h1 class="wow fadeInUp" data-wow-delay="0.4s">Compare Players</h1>
@@ -107,11 +104,10 @@
         </div>
     </div>
     <footer class="wow fadeInUp" data-wow-delay="1.3s">
-        <p style="">By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
+        <p >By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
     </footer>
 
-    <!-- JS files -->
-    <script src="/static/js/wow.min.js"></script>
+    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
     <script>
         new WOW().init();
     </script>

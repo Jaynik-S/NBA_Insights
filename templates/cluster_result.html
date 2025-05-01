@@ -1,111 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player Archetype Result</title>
-    <link rel="stylesheet" href="/static/style.css">
-    <link rel="stylesheet" href="/static/css/animate.css">
-    <!-- Add panzoom library for image zooming -->
-    <script src="https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js"></script>
-    <!-- Add our custom JavaScript -->
-    <script src="/static/js/cluster_result.js"></script>
-</head>
-<body>
-    <!-- Navbar Start -->
-    <header class="header navbar-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg">
-                        <a class="navbar-brand" href="{{ url_for('home') }}">
-                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo">
-                        </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                            <span class="toggler-icon"></span>
-                        </button>
+{% extends "layout.html" %}
 
-                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
-                            <ul id="nav" class="navbar-nav ml-auto">
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="{{ url_for('home') }}">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="{{ url_for('home') }}#about">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll active" href="{{ url_for('cluster') }}">Archetype</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="{{ url_for('compare') }}">Comparison</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="page-scroll" href="{{ url_for('custom') }}">Custom</a>
-                                </li>
-                            </ul>
-                        </div> <!-- navbar collapse -->
-                    </nav> <!-- navbar -->
+{% block title %}Player Archetype Result{% endblock %}
+
+{% block additional_css %}
+<script src="https://unpkg.com/panzoom@9.4.0/dist/panzoom.min.js"></script>
+{% endblock %}
+
+{% set active_page = 'cluster' %}
+
+{% block content %}
+<div class="container wow fadeIn" data-wow-delay="0.3s">
+    <h1 class="wow fadeInUp" data-wow-delay="0.4s">Player Archetype Result</h1>
+    {% if result.error %}
+        <p class="error wow fadeIn" data-wow-delay="0.5s">{{ result.error }}</p>
+    {% else %}
+        <p class="wow fadeIn" data-wow-delay="0.5s"><strong>Name:</strong> {{ result.name | title }}</p>
+        <p class="wow fadeIn" data-wow-delay="0.6s"><strong>Archetypes:</strong></p>
+            <ul class="wow fadeInUp" data-wow-delay="0.7s">
+            {% for archetype in result.archetypes %}
+                <li style="list-style-type: none; padding-left: 0;">{{ archetype }}</li>
+            {% endfor %}
+            </ul>
+        <div class="player-image wow zoomIn" data-wow-delay="0.8s">
+            <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player_id }}.png" alt="{{ player_id }}">
+        </div>
+        <div class="graph wow fadeInUp" data-wow-delay="0.9s">
+            <h2 class="wow fadeIn" data-wow-delay="1s">Visualization</h2>
+            {% if result.plot_base64 %}
+                <div class="zoom-controls wow fadeIn" data-wow-delay="1.1s">
+                    <button id="reset-zoom" class="wow fadeIn" data-wow-delay="1.2s">Reset Zoom</button>
+                    <div id="zoom-instructions" class="wow fadeIn" data-wow-delay="1.3s">Use mouse wheel to zoom, click and drag to pan</div>
                 </div>
-            </div> <!-- row -->
-        </div> <!-- container -->
-    </header>
-    <!-- Navbar End -->
-    
-    <div class="container wow fadeIn" data-wow-delay="0.3s">
-        <h1 class="wow fadeInUp" data-wow-delay="0.4s">Player Archetype Result</h1>
-        {% if result.error %}
-            <p class="error wow fadeIn" data-wow-delay="0.5s">{{ result.error }}</p>
-        {% else %}
-            <p class="wow fadeIn" data-wow-delay="0.5s"><strong>Name:</strong> {{ result.name | title }}</p>
-            <p class="wow fadeIn" data-wow-delay="0.6s"><strong>Archetypes:</strong></p>
-                <ul class="wow fadeInUp" data-wow-delay="0.7s">
-                {% for archetype in result.archetypes %}
-                    <li style="list-style-type: none; padding-left: 0;">{{ archetype }}</li>
+                <div class="visualization-container wow fadeIn" data-wow-delay="1.4s">
+                    <img id="cluster-visualization" src="data:image/png;base64,{{ result.plot_base64 }}" alt="Visualization">
+                </div>
+            {% else %}
+                <p class="wow fadeIn" data-wow-delay="1.1s">No visualization available.</p>
+            {% endif %}
+        </div>
+        <div class="player-stats wow fadeInUp" data-wow-delay="1.2s">
+            <h2 class="wow fadeIn" data-wow-delay="1.25s">Current Season Stats</h2>
+            <select onchange="updateStats(this.value)" class="wow fadeIn" data-wow-delay="1.3s">
+                <option value="">Select Season</option>
+                {% for season in seasons %}
+                    <option value="{{ season }}">{{ season }}</option>
                 {% endfor %}
-                </ul>
-            <div class="player-image wow zoomIn" data-wow-delay="0.8s">
-                <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/{{ player_id }}.png" alt="{{ player_id }}">
-            </div>
-            <div class="graph wow fadeInUp" data-wow-delay="0.9s">
-                <h2 class="wow fadeIn" data-wow-delay="1s">Visualization</h2>
-                {% if result.plot_base64 %}
-                    <div class="zoom-controls wow fadeIn" data-wow-delay="1.1s">
-                        <button id="reset-zoom" class="wow fadeIn" data-wow-delay="1.2s">Reset Zoom</button>
-                        <div id="zoom-instructions" class="wow fadeIn" data-wow-delay="1.3s">Use mouse wheel to zoom, click and drag to pan</div>
-                    </div>
-                    <div class="visualization-container wow fadeIn" data-wow-delay="1.4s">
-                        <img id="cluster-visualization" src="data:image/png;base64,{{ result.plot_base64 }}" alt="Visualization">
-                    </div>
-                {% else %}
-                    <p class="wow fadeIn" data-wow-delay="1.1s">No visualization available.</p>
-                {% endif %}
-            </div>
-            <div class="player-stats wow fadeInUp" data-wow-delay="1.2s">
-                <h2 class="wow fadeIn" data-wow-delay="1.3s">Current Season Stats</h2>
-                <select onchange="updateStats(this.value)" class="wow fadeIn" data-wow-delay="1.4s">
-                    <option value="">Select Season</option>
-                    {% for season in seasons %}
-                        <option value="{{ season }}">{{ season }}</option>
-                    {% endfor %}
-                </select>
-                <div id="season_stats" class="wow fadeIn" data-wow-delay="1.5s"></div>
-                <pre id="player_stats" style="display:none;">{{ stats | tojson }}</pre>
-                <pre id="player_columns" style="display:none;">{{ columns | tojson }}</pre>
-            </div>
-        {% endif %}
-    </div>
-    <footer class="wow fadeInUp" data-wow-delay="1.3s">
-        <p style="">By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
-    </footer>
+            </select>
+            <div id="season_stats" class="wow fadeIn" data-wow-delay="1.4s"></div>
+            <pre id="player_stats" style="display:none;">{{ stats | tojson }}</pre>
+            <pre id="player_columns" style="display:none;">{{ columns | tojson }}</pre>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
 
-    <!-- JS files -->
-    <script src="/static/js/wow.min.js"></script>
-    <script>
-        new WOW().init();
-    </script>
-</body>
-</html>
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/cluster_result.js') }}"></script>
+{% endblock %}

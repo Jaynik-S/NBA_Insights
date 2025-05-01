@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% block title %}NBA Insights{% endblock %}</title>
+    <meta name="description" content="NBA Insights helps basketball fans and analysts identify player archetypes, compare statistics, and analyze potential trades.">
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    {% block additional_css %}{% endblock %}
+</head>
+<body>
+    {% block preloader %}{% endblock %}
+    
+    {% block header %}
+    <header class="header navbar-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        <a class="navbar-brand" href="{{ url_for('home') }}">
+                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo">
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                            <ul id="nav" class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                    <a class="page-scroll {% if active_page == 'home' %}active{% endif %}" href="{{ url_for('home') }}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll {% if active_page == 'about' %}active{% endif %}" href="{{ url_for('home') }}#about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll {% if active_page == 'cluster' %}active{% endif %}" href="{{ url_for('cluster') }}">Archetype</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll {% if active_page == 'compare' %}active{% endif %}" href="{{ url_for('compare') }}">Comparison</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="page-scroll {% if active_page == 'custom' %}active{% endif %}" href="{{ url_for('custom') }}">Custom</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% endblock %}
+
+    {% block content %}{% endblock %}
+
+    {% block footer %}
+    <footer class="wow fadeInUp" data-wow-delay="1.3s">
+        <p>By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline">Jaynik</a> &copy; 2025.</p>
+    </footer>
+    {% endblock %}
+
+    <!-- Common Scripts -->
+    <script src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+    {% if not skip_bootstrap %}
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle-5.0.0.alpha-1-min.js') }}"></script>
+    {% endif %}
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    
+    <script>
+        new WOW().init();
+    </script>
+    
+    {% block scripts %}{% endblock %}
+</body>
+</html>

@@ -125,13 +125,11 @@ def find_optimal_clusters(X, max_clusters=30):
             # Calculate silhouette score
             score = silhouette_score(X, cluster_labels)
             silhouette_scores.append((n_clusters, score))
-            print(f"Clusters: {n_clusters}, Silhouette Score: {score:.4f}")
         except Exception as e:
             print(f"Error with {n_clusters} clusters: {e}")
     
     # Find best number of clusters
     best_n_clusters, best_score = max(silhouette_scores, key=lambda x: x[1])
-    print(f"Optimal number of clusters: {best_n_clusters} with score {best_score:.4f}")
     
     # Plot silhouette scores
     plt.figure(figsize=(10, 6))
