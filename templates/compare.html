@@ -5,34 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Players</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
     <!-- Add our custom JavaScript -->
     <script src="/static/js/compare.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container wow fadeIn" data-wow-delay="0.3s">
         <a href="{{ url_for('home') }}">
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="top-right-logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="top-right-logo wow fadeInDown" data-wow-delay="0.5s">
         </a>
-        <h1>Compare Players</h1>
-        <form action="/compare_players" method="POST">
-            <div id="players-selection">
-                <div class="column">
+        <h1 class="wow fadeInUp" data-wow-delay="0.4s">Compare Players</h1>
+        <form action="/compare_players" method="POST" class="wow fadeInUp" data-wow-delay="0.5s">
+            <div id="players-selection" class="wow fadeIn" data-wow-delay="0.6s">
+                <div class="column wow fadeInLeft" data-wow-delay="0.7s">
                     <label for="player1_name">Enter Player 1 Name:</label>
                     <input type="text" id="player1_name" name="player1_name" placeholder="e.g., Stephen Curry" required>
                 </div>
-                <div class="column">
+                <div class="column wow fadeInRight" data-wow-delay="0.8s">
                     <label for="player2_name">Enter Player 2 Name:</label>
                     <input type="text" id="player2_name" name="player2_name" placeholder="e.g., Kevin Durant" required>
                 </div>
             </div>
-            <div class="button-group">
-                <button type="button" id="addPlayerButton" onclick="addPlayerInput()">Add Another Player</button>
-                <button type="submit">Compare</button>
+            <div class="button-group wow fadeInUp" data-wow-delay="0.9s">
+                <button type="button" id="addPlayerButton" onclick="addPlayerInput()" class="wow pulse" data-wow-delay="1s">Add Another Player</button>
+                <button type="submit" class="wow fadeIn" data-wow-delay="1.1s">Compare</button>
             </div>
         </form>
     </div>
-    <footer>
-        <p>&copy; 2025 NBA Player Archetype Finder. <a href="https://github.com/Jaynik-S/NBA_Insights" target="_blank">GitHub</a></p>
+    <footer class="wow fadeInUp" data-wow-delay="1.3s">
+        <p style="">By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
     </footer>
+
+    <!-- JS files -->
+    <script src="/static/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>

@@ -5,20 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Select Program</title>
     <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
 </head>
 <body style="">
     
-    <div class="container" style="">
+    <div class="container wow fadeIn" data-wow-delay="0.3s" style="">
         <a href="{{ url_for('home') }}"> 
-            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="center-logo">
+            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="NBA Insights Logo" class="center-logo wow fadeInDown" data-wow-delay="0.5s">
         </a>
-        <form action="/select_program" method="POST">
-            <button type="submit" name="program" value="cluster">Player Archetype Finder</button>
-            <button type="submit" name="program" value="compare">Compare Players</button>
+        <form action="/select_program" method="POST" class="wow fadeIn" data-wow-delay="0.7s">
+            <button type="submit" name="program" value="cluster" class="wow bounceIn" data-wow-delay="0.9s">Player Archetype Finder</button>
+            <button type="submit" name="program" value="compare" class="wow bounceIn" data-wow-delay="1.1s">Compare Players</button>
         </form>
     </div>
-    <footer>
+    <footer class="wow fadeInUp" data-wow-delay="1.3s">
         <p style="">By <a href="https://www.linkedin.com/in/jayniksheth" target="_blank" style="text-decoration: underline";>Jaynik</a> &copy; 2025.</p>
     </footer>
+
+    <!-- JS files -->
+    <script src="/static/js/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
 </body>
 </html>
