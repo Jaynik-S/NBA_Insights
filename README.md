@@ -14,7 +14,6 @@ A comprehensive web application for analyzing NBA player statistics and classify
 2. **Run**: Execute `python app.py` in your terminal
 3. **Play**: Open your browser and navigate to `http://localhost:5000`
 
-
 ## ✨ Features
 
 - **Player Archetype Finder**:

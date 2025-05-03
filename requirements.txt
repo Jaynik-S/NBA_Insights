@@ -1,8 +1,9 @@
-flask>=2.0.0
-nba_api>=1.1.9
-pandas>=1.3.0
-numpy>=1.20.0
-matplotlib>=3.4.0
-scikit-learn>=1.0.0
+flask
 gunicorn
+numpy
+requests
+nba_api
+matplotlib
 whitenoise
+dotenv
+scikit-learn==1.6.0

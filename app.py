@@ -15,21 +15,22 @@ import base64
 import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 load_dotenv()
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/', prefix='static/')
 
-# Configurations
+
 CENTROIDS_FILE = os.environ.get('CENTROIDS_FILE', 'data/archetype_centroids.json')
 ARCHETYPE_MAPPING_FILE = os.environ.get('ARCHETYPE_MAPPING_FILE', 'data/archetype_mapping.json')
-app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
+
 
 # Helper function to get player archetypes using GMM
 def get_player_archetypes(player_name):
+    player_name = player_name.title()
     player_dict = players.find_players_by_full_name(player_name)
 
     if not player_dict:
@@ -85,7 +86,7 @@ def get_player_archetypes(player_name):
             color = colors[i]
             
             # Format label with distance and probability
-            label = f"{archetype_name} (dist: {distance:.2f}"
+            label = f"{archetype_name} (dist: {distance:.2f})"
             
             # Plot centroid with color
             plt.scatter(centroid[0], centroid[1], c=color, marker='x', s=200, label=label)
@@ -102,7 +103,7 @@ def get_player_archetypes(player_name):
     plt.scatter(player_coordinates[0], player_coordinates[1], c='black', marker='o', s=120, label=f"{player_name}'s location")
     plt.text(player_coordinates[0] + 0.1, player_coordinates[1], player_name, fontsize=11, color='black', weight='bold')
 
-    plt.title(f"Top 3 Closest Archetypes for {player_name.title()}", fontsize=16)
+    plt.title(f"Top 3 Closest Archetypes for {player_name}", fontsize=16)
     plt.xlabel("Principal Component 1", fontsize=14)
     plt.ylabel("Principal Component 2", fontsize=14)
     plt.legend(loc='best')
@@ -218,5 +219,6 @@ def run_compare():
 def page_not_found(e):
     return render_template('error.html', error_message="Page not found"), 404
 
+
 if __name__ == '__main__':
-    app.run(debug=os.environ.get('DEBUG', 'False') == 'True')
+    app.run(debug=True)
