@@ -1,21 +1,32 @@
-from flask import Flask, render_template, request, redirect, url_for
+
 from nba_api.stats.static import players
 from centroid_clustering import single_player_archetypes
-import json
+import career_stats as cs
+from flask import Flask, render_template, request, redirect, url_for
 import matplotlib
 matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
-import career_stats as cs
+from whitenoise import WhiteNoise
+from dotenv import load_dotenv
+import logging
+import json
 import io
 import base64
 import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-default-secret-key')
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+load_dotenv()
+
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 
 # Configurations
-CENTROIDS_FILE = "data/archetype_centroids.json"
-ARCHETYPE_MAPPING_FILE = "data/archetype_mapping.json"
-STATIC_DIR = "static"
+CENTROIDS_FILE = os.environ.get('CENTROIDS_FILE', 'data/archetype_centroids.json')
+ARCHETYPE_MAPPING_FILE = os.environ.get('ARCHETYPE_MAPPING_FILE', 'data/archetype_mapping.json')
+app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/')
 
 # Helper function to get player archetypes using GMM
 def get_player_archetypes(player_name):
@@ -203,5 +214,9 @@ def run_compare():
     
     return render_template('compare_result.html', players=players_data)
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('error.html', error_message="Page not found"), 404
+
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=os.environ.get('DEBUG', 'False') == 'True')
