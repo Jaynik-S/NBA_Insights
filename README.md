@@ -2,6 +2,8 @@
 
 A comprehensive web application for analyzing NBA player statistics and classifying players into archetypes!
 
+![NBA Insights](static/img/hero-page.png)
+
 ## 📊 Project Overview
 
 **Purpose**: NBA Insights helps basketball enthusiasts, analysts, and fantasy players understand player performance through data-driven analysis and visualization tools.
@@ -15,6 +17,8 @@ A comprehensive web application for analyzing NBA player statistics and classify
 3. **Play**: Open your browser and navigate to `http://localhost:5000`
 
 ## ✨ Features
+
+![Features](static/img/features-page.png)
 
 - **Player Archetype Finder**:
   - Advanced clustering algorithms to classify NBA players
