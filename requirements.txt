@@ -1,9 +1,7 @@
 flask
-gunicorn
 numpy
 requests
 nba_api
 matplotlib
-whitenoise
-dotenv
 scikit-learn==1.6.0
+python-dotenv

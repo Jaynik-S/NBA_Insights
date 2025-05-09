@@ -1,4 +1,3 @@
-
 from nba_api.stats.static import players
 from centroid_clustering import single_player_archetypes
 import career_stats as cs
@@ -6,7 +5,6 @@ from flask import Flask, render_template, request, redirect, url_for
 import matplotlib
 matplotlib.use('Agg')  # Use non-GUI backend
 import matplotlib.pyplot as plt
-from whitenoise import WhiteNoise
 from dotenv import load_dotenv
 import logging
 import json
@@ -20,12 +18,17 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 load_dotenv()
 
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
-app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/', prefix='static/')
+# Update configuration for Vercel
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-default-secret-key')
 
+# Remove WhiteNoise for Vercel deployment
+# Vercel handles static files differently
+# app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/', prefix='static/')
 
-CENTROIDS_FILE = os.environ.get('CENTROIDS_FILE', 'data/archetype_centroids.json')
-ARCHETYPE_MAPPING_FILE = os.environ.get('ARCHETYPE_MAPPING_FILE', 'data/archetype_mapping.json')
+# Update file paths to be absolute
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+CENTROIDS_FILE = os.path.join(BASE_DIR, 'data', 'archetype_centroids.json')
+ARCHETYPE_MAPPING_FILE = os.path.join(BASE_DIR, 'data', 'archetype_mapping.json')
 
 
 # Helper function to get player archetypes using GMM
@@ -221,4 +224,5 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    # Only run in debug mode locally
+    app.run(debug=os.environ.get('FLASK_ENV') != 'production')
