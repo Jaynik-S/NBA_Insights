@@ -26,11 +26,15 @@ A comprehensive web application for analyzing NBA player statistics and classify
   - Multiple archetype identification based on proximity to centroids
   - Interactive visualization of player positioning relative to archetypes
 
+![Archetype](static/img/lebron-archetype-page.png)  
+
 - **Player Comparison Tool**:
   - Side-by-side comparison of career statistics
   - Dynamic chart generation for multiple statistical categories
   - Support for comparing up to five players
   - Intuitive visualization of statistical differences
+
+![Comparison](static/img/comparison-page.png)    
 
 - **Custom Archetype Creation** (Coming Soon):
   - User-defined criteria for custom player archetypes

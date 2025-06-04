@@ -18,14 +18,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 load_dotenv()
 
-# Update configuration for Vercel
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-default-secret-key')
+# Configuration for production deployment
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your-production-secret-key-change-this')
 
-# Remove WhiteNoise for Vercel deployment
-# Vercel handles static files differently
-# app.wsgi_app = WhiteNoise(app.wsgi_app, root='static/', prefix='static/')
-
-# Update file paths to be absolute
+# Handle both local and production environments
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 CENTROIDS_FILE = os.path.join(BASE_DIR, 'data', 'archetype_centroids.json')
 ARCHETYPE_MAPPING_FILE = os.path.join(BASE_DIR, 'data', 'archetype_mapping.json')
@@ -224,5 +220,8 @@ def page_not_found(e):
 
 
 if __name__ == '__main__':
+    # Get port from environment variable or use 5000 as default
+    port = int(os.environ.get('PORT', 5000))
     # Only run in debug mode locally
-    app.run(debug=os.environ.get('FLASK_ENV') != 'production')
+    debug_mode = os.environ.get('FLASK_ENV') != 'production'
+    app.run(host='0.0.0.0', port=port, debug=debug_mode)
